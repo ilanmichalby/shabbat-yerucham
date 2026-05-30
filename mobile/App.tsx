@@ -8,14 +8,8 @@ import {
   View,
   Pressable,
   Image,
+  Platform,
 } from 'react-native';
-import {
-  useFonts,
-  Heebo_300Light,
-  Heebo_400Regular,
-  Heebo_500Medium,
-  Heebo_700Bold,
-} from '@expo-google-fonts/heebo';
 
 // ---- Design tokens (from .stitch/DESIGN.md "Nocturnal Sanctuary") ----
 const C = {
@@ -33,10 +27,10 @@ const C = {
 };
 
 const FONT = {
-  light: 'Heebo_300Light',
-  regular: 'Heebo_400Regular',
-  medium: 'Heebo_500Medium',
-  bold: 'Heebo_700Bold',
+  light: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-light',
+  regular: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif',
+  medium: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif-medium',
+  bold: Platform.OS === 'ios' ? 'Helvetica Neue' : 'sans-serif',
 };
 
 // ---- Data ----
@@ -59,16 +53,6 @@ type Tab = 'home' | 'times' | 'about';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('home');
-  const [fontsLoaded] = useFonts({
-    Heebo_300Light,
-    Heebo_400Regular,
-    Heebo_500Medium,
-    Heebo_700Bold,
-  });
-
-  if (!fontsLoaded) {
-    return <View style={{ flex: 1, backgroundColor: C.bg }} />;
-  }
 
   return (
     <SafeAreaView style={styles.root}>
