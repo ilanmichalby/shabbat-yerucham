@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#4f4537",
+                    "primary-fixed": "#ffdea9",
+                    "tertiary-fixed": "#dde1ff",
+                    "primary-container": "#e8b65a",
+                    "surface-container-highest": "#2d3350",
+                    "tertiary-fixed-dim": "#bdc4f1",
+                    "on-primary-container": "#664700",
+                    "secondary": "#ddc48d",
+                    "on-primary-fixed-variant": "#5e4200",
+                    "surface-variant": "#2d3350",
+                    "surface-container-high": "#222844",
+                    "secondary-fixed-dim": "#ddc48d",
+                    "on-tertiary": "#262e53",
+                    "surface": "#0a112c",
+                    "on-background": "#dde1ff",
+                    "secondary-container": "#564519",
+                    "error": "#ffb4ab",
+                    "on-primary": "#422d00",
+                    "secondary-fixed": "#fae0a6",
+                    "primary-fixed-dim": "#f1be62",
+                    "on-tertiary-container": "#434b71",
+                    "surface-tint": "#f1be62",
+                    "surface-container-lowest": "#050c27",
+                    "on-secondary": "#3d2e05",
+                    "on-secondary-fixed-variant": "#564519",
+                    "on-surface-variant": "#d3c5b2",
+                    "inverse-surface": "#dde1ff",
+                    "on-tertiary-fixed": "#10193c",
+                    "on-surface": "#dde1ff",
+                    "outline": "#9b8f7e",
+                    "on-primary-fixed": "#271900",
+                    "surface-container-low": "#131a35",
+                    "inverse-on-surface": "#282f4b",
+                    "tertiary-container": "#b4bce9",
+                    "on-tertiary-fixed-variant": "#3d456a",
+                    "on-secondary-container": "#cbb37d",
+                    "error-container": "#93000a",
+                    "inverse-primary": "#7d5800",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed": "#251a00",
+                    "surface-container": "#171e39",
+                    "surface-bright": "#313854",
+                    "surface-dim": "#0a112c",
+                    "on-error": "#690005",
+                    "background": "#0a112c",
+                    "tertiary": "#d2d8ff",
+                    "primary": "#ffd388"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "1.25rem",
+                    "margin-desktop": "2rem",
+                    "stack-md": "1rem",
+                    "container-max": "600px",
+                    "gutter": "1rem",
+                    "stack-sm": "0.5rem",
+                    "stack-lg": "2rem"
+            },
+            "fontFamily": {
+                    "display-time": ["Rubik", "Heebo"],
+                    "label-sm": ["Rubik", "Heebo"],
+                    "label-md": ["Rubik", "Heebo"],
+                    "body-lg": ["Rubik", "Heebo"],
+                    "body-md": ["Rubik", "Heebo"],
+                    "headline-md": ["Rubik", "Heebo"],
+                    "headline-lg": ["Rubik", "Heebo"],
+                    "headline-lg-mobile": ["Rubik", "Heebo"]
+            },
+            "fontSize": {
+                    "display-time": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', 'Rubik', sans-serif;
+            background-color: #0a112c;
+        }
+        .glow-gold {
+            filter: drop-shadow(0 0 15px rgba(232, 182, 90, 0.15));
+        }
+        .glass-card {
+            background: rgba(27, 35, 71, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(44, 53, 102, 0.5);
+        }
+        .text-parchment {
+            color: #f5f1e6;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 h-16">
+<div class="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-[600px] mx-auto h-full">
+<div class="font-headline-md text-headline-md font-bold text-primary">שבת בירוחם</div>
+<nav class="hidden md:flex flex-row-reverse gap-gutter items-center">
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 transition-colors" href="index.html">בית</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="times.html">זמנים</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="about.html">אודות</a>
+</nav>
+<div class="flex items-center gap-stack-sm">
+<button class="p-2 text-primary">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="md:hidden p-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-stack-lg w-full max-w-[600px] mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Hero Section -->
+<section class="text-center mb-stack-lg animate-fade-in">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">ירוחם</h1>
+<div class="font-body-md text-body-md text-on-surface-variant opacity-80">
+                פרשת ואתחנן | ט"ו באב תשפ"ד | 16 באוגוסט 2024
+            </div>
+</section>
+<!-- Main Time Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-stack-md mb-stack-lg">
+<!-- Card 1: Candle Lighting -->
+<div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center glow-gold">
+<div class="mb-2 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-[32px]" data-icon="light_mode" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+</div>
+<h2 class="font-label-md text-label-md text-on-surface-variant mb-4">כניסת שבת — הדלקת נרות</h2>
+<div class="font-display-time text-display-time text-primary-container">19:08</div>
+</div>
+<!-- Card 2: Havdalah -->
+<div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+<div class="mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[32px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h2 class="font-label-md text-label-md text-on-surface-variant mb-4">צאת השבת</h2>
+<div class="font-display-time text-display-time text-primary-container">20:12</div>
+</div>
+</section>
+<!-- Desert Atmosphere Image -->
+<section class="mb-stack-lg rounded-2xl overflow-hidden relative h-48 group">
+<img alt="נוף מדברי בשעת דמדומים" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic low-angle shot of the Negev desert horizon in Yerucham during the blue hour twilight. The sky is a deep velvety indigo transitioning into a soft golden glow at the base. Silhouetted desert dunes and sparse vegetation are visible under a sprinkle of early evening stars, creating a serene, reverent, and spiritual atmosphere consistent with a peaceful Shabbat evening." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD4TM7vsCFY4L_rzGi_zM9SWmqc0oZus4qSWwWDNwdHOuhU1jYC1QbFHAtIVXvv6RK2KL1TlUjLPZoRcdpt3xbcXPJ8dNQe4lc-w8Yb-0wKy0ZEAoD2IXM1g3yRbBIoZ2ojkMo8mxx2kft_nenJADmjpiJuywEfZYPFrZmfe0F46LP0zA7MYL0HLGf11AKOyHF0YbbR4WLwZ-wY9nJkkrHncI8qwRFvxKAS3Tk-1Hy_Y41gWIMlaI-M86-PVsMLA09kIxbzmM4Ras"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 right-4 text-parchment font-label-md">
+                שבת שלום מירוחם
+            </div>
+</section>
+<!-- Upcoming Shabbats -->
+<section class="animate-slide-up">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-md px-2">שבתות קרובות</h3>
+<div class="glass-card rounded-2xl overflow-hidden">
+<table class="w-full text-right">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-outline-variant/30">
+<th class="p-4 font-label-sm text-label-sm text-on-surface-variant">תאריך</th>
+<th class="p-4 font-label-sm text-label-sm text-on-surface-variant">פרשה</th>
+<th class="p-4 font-label-sm text-label-sm text-on-surface-variant">כניסה</th>
+<th class="p-4 font-label-sm text-label-sm text-on-surface-variant">צאת</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-body-md text-body-md text-parchment">23.08</td>
+<td class="p-4 font-body-md text-body-md text-parchment font-medium">פרשת עקב</td>
+<td class="p-4 font-display-time text-label-md text-primary-fixed-dim">18:59</td>
+<td class="p-4 font-display-time text-label-md text-primary-fixed-dim">20:02</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-body-md text-body-md text-parchment">30.08</td>
+<td class="p-4 font-body-md text-body-md text-parchment font-medium">פרשת ראה</td>
+<td class="p-4 font-display-time text-label-md text-primary-fixed-dim">18:50</td>
+<td class="p-4 font-display-time text-label-md text-primary-fixed-dim">19:53</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-body-md text-body-md text-parchment">06.09</td>
+<td class="p-4 font-body-md text-body-md text-parchment font-medium">פרשת שופטים</td>
+<td class="p-4 font-display-time text-label-md text-primary-fixed-dim">18:40</td>
+<td class="p-4 font-display-time text-label-md text-primary-fixed-dim">19:42</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 mt-stack-lg">
+<div class="flex flex-col items-center gap-stack-md py-stack-lg w-full max-w-[600px] mx-auto text-center px-margin-mobile">
+<div class="font-headline-md text-headline-md text-primary mb-2">שבת בירוחם</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant max-w-[80%]">
+                הזמנים מיועדים לירוחם בלבד. כל הזכויות שמורות.
+            </p>
+<div class="flex gap-stack-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="#">תנאי שימוש</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="#">פרטיות</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="#">צור קשר</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell (Conditional) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
+<a href="index.html" class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-label-sm">בית</span>
+</a>
+<a href="times.html" class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="text-[10px] font-label-sm">זמנים</span>
+</a>
+<a href="about.html" class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<span class="text-[10px] font-label-sm">אודות</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for the cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'transform 0.3s ease-out';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add subtle animation classes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-slide-up { animation: fadeInUp 0.8s ease-out forwards; }
+            .animate-fade-in { animation: fadeInUp 0.5s ease-out forwards; }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

@@ -1,0 +1,36 @@
+{
+  "name": "projects/2435969432232385447",
+  "projectId": "2435969432232385447",
+  "title": "שבת בירוחם — Shabbat Times Yerucham",
+  "visibility": "PRIVATE",
+  "createTime": "2026-05-30T23:11:51.774812Z",
+  "updateTime": "2026-05-30T23:13:44.209732Z",
+  "projectType": "PROJECT_DESIGN",
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+    "colorMode": "DARK",
+    "font": "RUBIK",
+    "roundness": "ROUND_EIGHT",
+    "customColor": "#e8b65a",
+    "overrideNeutralColor": "#0e1530",
+    "overridePrimaryColor": "#e8b65a",
+    "overrideSecondaryColor": "#f3d9a0",
+    "overrideTertiaryColor": "#1b2347",
+    "designSystemName": "Nocturnal Sanctuary"
+  },
+  "screens": {
+    "index": {
+      "id": "09b4b2ca59174f3881f80a80ddfc5b36",
+      "sourceScreen": "projects/2435969432232385447/screens/09b4b2ca59174f3881f80a80ddfc5b36",
+      "x": 1024,
+      "y": 0,
+      "width": 1280,
+      "height": 1147,
+      "title": "דף הבית - שבת בירוחם"
+    }
+  },
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}
