@@ -3,3 +3,7 @@ node_modules/
 dist/
 web-build/
 *.log
+
+# Native projects — regenerated from app.json via Continuous Native Generation
+/android
+/ios
