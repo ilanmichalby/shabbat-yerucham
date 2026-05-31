@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "מתי שבת בירוחם",
     "slug": "shabbat-yerucham",
     "sdkVersion": "54.0.0",
     "version": "1.0.0",
@@ -17,7 +17,9 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.yerucham.shabbat",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,6 +32,12 @@
           "color": "#e8b65a"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8e4585de-3b4b-4048-aa8a-b35d50cfcdd5"
+      }
+    },
+    "owner": "ilanb"
   }
 }
