@@ -6,6 +6,8 @@ import {
   ActivityIndicator,
   ScrollView,
   SafeAreaView,
+  Platform,
+  StatusBar,
 } from 'react-native';
 
 type Shabbat = {
@@ -193,7 +195,11 @@ function Card({ label, value, highlight }: { label: string; value?: string; high
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#0a112c' },
+  root: {
+    flex: 1,
+    backgroundColor: '#0a112c',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0,
+  },
   header: {
     height: 56,
     justifyContent: 'center',
