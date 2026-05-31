@@ -7,6 +7,12 @@
       "runtimeArgs": ["expo", "start", "--web", "--port", "8082"],
       "cwd": "mobile",
       "port": 8082
+    },
+    {
+      "name": "admin",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "site/public", "-l", "8083"],
+      "port": 8083
     }
   ]
 }

@@ -24,17 +24,9 @@ type AppData = {
   upcoming: Shabbat[];
 };
 
-const LAT = 30.9881;
-const LON = 34.9269;
-
-function hm(iso: string): string {
-  const d = new Date(iso);
-  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
-}
-
-function addMinutes(iso: string, mins: number): string {
-  return hm(new Date(new Date(iso).getTime() + mins * 60000).toISOString());
-}
+// Times are managed manually via the admin CSV upload and published here.
+const DATA_URL =
+  'https://raw.githubusercontent.com/ilanmichalby/shabbat-yerucham/main/site/public/shabbat-times.json';
 
 function formatDate(iso: string): string {
   if (!iso) return '';
@@ -48,64 +40,21 @@ function shortDate(iso: string): string {
   return `${d}.${m}`;
 }
 
-async function loadSunset(date: string): Promise<string> {
-  try {
-    const url =
-      `https://www.hebcal.com/zmanim?cfg=json&latitude=${LAT}&longitude=${LON}` +
-      `&tzid=Asia%2FJerusalem&date=${date}`;
-    const res = await fetch(url);
-    const json = await res.json();
-    const sunset = json?.times?.sunset;
-    return sunset ? hm(sunset) : '--:--';
-  } catch {
-    return '--:--';
-  }
-}
-
 async function loadShabbatData(): Promise<AppData> {
-  const start = new Date();
-  const end = new Date(start.getTime() + 35 * 24 * 60 * 60 * 1000);
-  const fmt = (d: Date) => d.toISOString().slice(0, 10);
-  const url =
-    `https://www.hebcal.com/hebcal?v=1&cfg=json&geo=pos&latitude=${LAT}&longitude=${LON}` +
-    `&tzid=Asia%2FJerusalem&c=on&havdalah=42&s=on&maj=on&min=off&mod=off&nx=off` +
-    `&start=${fmt(start)}&end=${fmt(end)}`;
-  const res = await fetch(url);
+  const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
   const json = await res.json();
-  const items: any[] = json.items ?? [];
+  const all: Shabbat[] = (json.shabbats ?? [])
+    .slice()
+    .sort((a: Shabbat, b: Shabbat) => a.dateISO.localeCompare(b.dateISO));
 
-  // Group events by their Shabbat (parashat date marks the Saturday).
-  const candles = items.filter((i) => i.category === 'candles');
-  const havdalot = items.filter((i) => i.category === 'havdalah');
-  const parashot = items.filter((i) => i.category === 'parashat');
-
-  const shabbats: Shabbat[] = await Promise.all(
-    candles.map(async (c) => {
-      const cDate = new Date(c.date);
-      // Havdalah is the day after candle lighting.
-      const hav = havdalot.find((h) => {
-        const diff = (new Date(h.date).getTime() - cDate.getTime()) / 3600000;
-        return diff > 0 && diff < 30;
-      });
-      // Parsha shares the Saturday date with havdalah.
-      const par = parashot.find((p) => {
-        if (!hav) return false;
-        return p.date.slice(0, 10) === hav.date.slice(0, 10);
-      });
-      return {
-        parsha: par?.hebrew ?? par?.title ?? 'שבת',
-        dateISO: c.date,
-        sunset: await loadSunset(c.date.slice(0, 10)),
-        candleLighting: hm(c.date),
-        havdalah: hav ? hm(hav.date) : '--:--',
-        rabbeinuTam: hav ? addMinutes(hav.date, 8) : '--:--',
-      };
-    })
-  );
+  // "Current" is the nearest Shabbat that hasn't passed yet.
+  const today = new Date().toISOString().slice(0, 10);
+  let idx = all.findIndex((s) => s.dateISO >= today);
+  if (idx === -1) idx = Math.max(0, all.length - 1);
 
   return {
-    current: shabbats[0],
-    upcoming: shabbats.slice(1, 4),
+    current: all[idx],
+    upcoming: all.slice(idx + 1, idx + 4),
   };
 }
 
