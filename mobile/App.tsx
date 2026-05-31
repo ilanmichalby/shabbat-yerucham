@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
   Pressable,
   Modal,
   Switch,
+  Share,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
@@ -54,6 +55,19 @@ const DEFAULT_PREFS: NotifPrefs = {
 
 const PREFS_KEY = 'notif-prefs-v1';
 const ANDROID_CHANNEL = 'shabbat';
+const NOTIF_CATEGORY = 'shabbat-actions';
+
+// Build the share text from a Shabbat object.
+function buildShareText(s: Shabbat): string {
+  return (
+    `🕯️ שבת ${s.parsha} בירוחם\n` +
+    `📅 ${formatDate(s.dateISO)}\n\n` +
+    `כניסת שבת: ${s.candleLighting}\n` +
+    `שקיעה: ${s.sunset}\n` +
+    `צאת שבת: ${s.havdalah}\n` +
+    `צאת שבת (רבנו תם): ${s.rabbeinuTam}`
+  );
+}
 
 // Show notifications even when the app is foregrounded.
 Notifications.setNotificationHandler({
@@ -92,6 +106,13 @@ async function ensurePermissions(): Promise<boolean> {
       lightColor: '#e8b65a',
     });
   }
+
+  // Register action buttons on the notification (share + open).
+  await Notifications.setNotificationCategoryAsync(NOTIF_CATEGORY, [
+    { identifier: 'share', buttonTitle: '📤 שתף' },
+    { identifier: 'open',  buttonTitle: '📖 פתח' },
+  ]);
+
   const current = await Notifications.getPermissionsAsync();
   let status = current.status;
   if (status !== 'granted') {
@@ -115,10 +136,20 @@ async function rescheduleAll(prefs: NotifPrefs, shabbats: Shabbat[]): Promise<vo
   const now = Date.now();
   const channelId = Platform.OS === 'android' ? ANDROID_CHANNEL : undefined;
 
-  const schedule = async (date: Date, title: string, body: string) => {
+  // Find the next upcoming shabbat (for use in the custom weekly notification).
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const nextShabbat = shabbats.find((s) => s.dateISO >= todayISO) ?? shabbats[shabbats.length - 1];
+
+  const schedule = async (date: Date, title: string, body: string, shabbat: Shabbat) => {
     if (date.getTime() <= now) return;
     await Notifications.scheduleNotificationAsync({
-      content: { title, body },
+      content: {
+        title,
+        body,
+        categoryIdentifier: NOTIF_CATEGORY,
+        // Attach shabbat data so the action handler can build the share text.
+        data: { shabbat },
+      },
       trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date, channelId },
     });
   };
@@ -126,33 +157,45 @@ async function rescheduleAll(prefs: NotifPrefs, shabbats: Shabbat[]): Promise<vo
   for (const s of shabbats) {
     if (!s?.dateISO || !s?.candleLighting) continue;
 
+    const timeLine =
+      `כניסה: ${s.candleLighting}  |  שקיעה: ${s.sunset}  |  צאת: ${s.havdalah}`;
+
     if (prefs.friday10) {
-      // יום שישי (יום לפני dateISO) בשעה 10:00
       await schedule(
         buildLocalDate(s.dateISO, '10:00', -1),
-        'שבת בירוחם 🕯️',
-        `שבת ${s.parsha} מתקרבת. כניסת השבת היום בשעה ${s.candleLighting}.`
+        `🕯️ שבת ${s.parsha} — ירוחם`,
+        timeLine,
+        s
       );
     }
     if (prefs.hourBefore) {
       await schedule(
         buildLocalDate(s.dateISO, s.candleLighting, -1, -60),
-        'שעה לכניסת השבת 🕯️',
-        `כניסת שבת ${s.parsha} בעוד שעה, בשעה ${s.candleLighting}.`
+        `🕯️ שעה לכניסת שבת ${s.parsha}`,
+        timeLine,
+        s
       );
     }
     if (prefs.halfHourBefore) {
       await schedule(
         buildLocalDate(s.dateISO, s.candleLighting, -1, -30),
-        'חצי שעה לכניסת השבת 🕯️',
-        `כניסת שבת ${s.parsha} בעוד חצי שעה, בשעה ${s.candleLighting}.`
+        `🕯️ חצי שעה לכניסת שבת ${s.parsha}`,
+        timeLine,
+        s
       );
     }
   }
 
-  if (prefs.custom.enabled) {
+  if (prefs.custom.enabled && nextShabbat) {
+    const timeLine =
+      `כניסה: ${nextShabbat.candleLighting}  |  שקיעה: ${nextShabbat.sunset}  |  צאת: ${nextShabbat.havdalah}`;
     await Notifications.scheduleNotificationAsync({
-      content: { title: 'תזכורת שבת 🕯️', body: 'תזכורת מותאמת אישית לקראת השבת.' },
+      content: {
+        title: `🕯️ שבת ${nextShabbat.parsha} — ירוחם`,
+        body: timeLine,
+        categoryIdentifier: NOTIF_CATEGORY,
+        data: { shabbat: nextShabbat },
+      },
       trigger: {
         type: Notifications.SchedulableTriggerInputTypes.WEEKLY,
         weekday: prefs.custom.weekday,
@@ -203,6 +246,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [prefs, setPrefs] = useState<NotifPrefs>(DEFAULT_PREFS);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const responseListener = useRef<Notifications.EventSubscription | null>(null);
 
   useEffect(() => {
     loadShabbatData()
@@ -212,6 +256,23 @@ export default function App() {
       })
       .catch(() => setError(true));
     loadPrefs().then(setPrefs);
+
+    // Handle taps on notification action buttons.
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        const actionId = response.actionIdentifier;
+        const shabbat = response.notification.request.content.data?.shabbat as Shabbat | undefined;
+
+        if (actionId === 'share' && shabbat) {
+          Share.share({ message: buildShareText(shabbat) });
+        }
+        // 'open' and default tap just bring the app to foreground — nothing extra needed.
+      }
+    );
+
+    return () => {
+      responseListener.current?.remove();
+    };
   }, []);
 
   // Whenever prefs or data change, re-sync the scheduled notifications.
