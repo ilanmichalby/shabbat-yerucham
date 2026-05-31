@@ -1,0 +1,126 @@
+{
+  "updatedAt": "2026-05-31T00:00:00.000Z",
+  "source": "manual-csv",
+  "shabbats": [
+    {
+      "parsha": "שלח לך",
+      "dateISO": "2026-06-06",
+      "candleLighting": "19:24",
+      "sunset": "19:44",
+      "havdalah": "20:23",
+      "rabbeinuTam": "20:53"
+    },
+    {
+      "parsha": "קרח",
+      "dateISO": "2026-06-13",
+      "candleLighting": "19:27",
+      "sunset": "19:47",
+      "havdalah": "20:26",
+      "rabbeinuTam": "20:56"
+    },
+    {
+      "parsha": "חוקת",
+      "dateISO": "2026-06-20",
+      "candleLighting": "19:30",
+      "sunset": "19:50",
+      "havdalah": "20:28",
+      "rabbeinuTam": "20:59"
+    },
+    {
+      "parsha": "בלק",
+      "dateISO": "2026-06-27",
+      "candleLighting": "19:31",
+      "sunset": "19:51",
+      "havdalah": "20:29",
+      "rabbeinuTam": "21:00"
+    },
+    {
+      "parsha": "פינחס",
+      "dateISO": "2026-07-04",
+      "candleLighting": "19:31",
+      "sunset": "19:51",
+      "havdalah": "20:29",
+      "rabbeinuTam": "21:00"
+    },
+    {
+      "parsha": "מטות מסעי",
+      "dateISO": "2026-07-11",
+      "candleLighting": "19:30",
+      "sunset": "19:50",
+      "havdalah": "20:27",
+      "rabbeinuTam": "20:58"
+    },
+    {
+      "parsha": "דברים, חזון",
+      "dateISO": "2026-07-18",
+      "candleLighting": "19:28",
+      "sunset": "19:48",
+      "havdalah": "20:24",
+      "rabbeinuTam": "20:56"
+    },
+    {
+      "parsha": "ואתחנן, נחמו",
+      "dateISO": "2026-07-25",
+      "candleLighting": "19:24",
+      "sunset": "19:44",
+      "havdalah": "20:20",
+      "rabbeinuTam": "20:52"
+    },
+    {
+      "parsha": "עקב",
+      "dateISO": "2026-08-01",
+      "candleLighting": "19:19",
+      "sunset": "19:39",
+      "havdalah": "20:15",
+      "rabbeinuTam": "20:47"
+    },
+    {
+      "parsha": "ראה",
+      "dateISO": "2026-08-08",
+      "candleLighting": "19:14",
+      "sunset": "19:34",
+      "havdalah": "20:08",
+      "rabbeinuTam": "20:42"
+    },
+    {
+      "parsha": "שופטים",
+      "dateISO": "2026-08-15",
+      "candleLighting": "19:07",
+      "sunset": "19:27",
+      "havdalah": "20:01",
+      "rabbeinuTam": "20:35"
+    },
+    {
+      "parsha": "כי תצא",
+      "dateISO": "2026-08-22",
+      "candleLighting": "19:00",
+      "sunset": "19:20",
+      "havdalah": "19:53",
+      "rabbeinuTam": "20:27"
+    },
+    {
+      "parsha": "כי תבוא",
+      "dateISO": "2026-08-29",
+      "candleLighting": "18:51",
+      "sunset": "19:11",
+      "havdalah": "19:44",
+      "rabbeinuTam": "20:19"
+    },
+    {
+      "parsha": "נצבים וילך",
+      "dateISO": "2026-09-05",
+      "candleLighting": "18:43",
+      "sunset": "19:03",
+      "havdalah": "19:35",
+      "rabbeinuTam": "20:11"
+    },
+    {
+      "parsha": "ראש השנה",
+      "dateISO": "2026-09-12",
+      "candleLighting": "18:34",
+      "sunset": "18:54",
+      "havdalah": "19:26",
+      "rabbeinuTam": "20:02"
+    }
+  ]
+}

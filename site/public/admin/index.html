@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ניהול זמני שבת — ירוחם</title>
+<style>
+  :root {
+    --bg: #0f1422;
+    --card: #1a2236;
+    --line: #2a3550;
+    --text: #e8ecf6;
+    --muted: #9aa6c2;
+    --accent: #f5b942;
+    --accent-2: #5b8def;
+    --ok: #46c08a;
+    --err: #ef5d6b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 .25rem; }
+  .sub { color: var(--muted); margin: 0 0 1.5rem; font-size: .95rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .card h2 { font-size: 1.05rem; margin: 0 0 .75rem; }
+  .step { color: var(--accent); font-weight: 700; }
+  button {
+    font-family: inherit;
+    font-size: .95rem;
+    border: 0;
+    border-radius: 10px;
+    padding: .6rem 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .btn-primary { background: var(--accent); color: #1a1300; }
+  .btn-ghost { background: transparent; color: var(--accent-2); border: 1px solid var(--accent-2); }
+  .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+  .row { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+  input[type=file] { color: var(--muted); }
+  .hint { color: var(--muted); font-size: .85rem; line-height: 1.5; }
+  code { background: #0b0f1a; padding: .1rem .35rem; border-radius: 5px; color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: .5rem; }
+  th, td { text-align: right; padding: .5rem .6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 600; }
+  tr.bad td { background: rgba(239,93,107,.12); }
+  .msg { padding: .7rem .9rem; border-radius: 10px; font-size: .9rem; margin-top: .75rem; display: none; }
+  .msg.ok { display: block; background: rgba(70,192,138,.15); color: var(--ok); }
+  .msg.err { display: block; background: rgba(239,93,107,.15); color: var(--err); white-space: pre-line; }
+  .pill { font-size: .75rem; padding: .15rem .5rem; border-radius: 999px; }
+  .pill.ok { background: rgba(70,192,138,.2); color: var(--ok); }
+  .pill.err { background: rgba(239,93,107,.2); color: var(--err); }
+  .scroll { overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ניהול זמני שבת — ירוחם</h1>
+  <p class="sub">העלאת קובץ CSV עם הזמנים שלך. הזמנים יוצגו באפליקציה ובאתר.</p>
+
+  <div class="card">
+    <h2><span class="step">1.</span> הורדת תבנית</h2>
+    <p class="hint">העמודות הנדרשות: <code>תאריך</code>, <code>פרשה</code>, <code>הדלקת נרות</code>, <code>שקיעה</code>, <code>צאת השבת</code>, <code>רבנו תם</code>.<br>
+      התאריך בפורמט <code>YYYY-MM-DD</code> (למשל 2026-06-05) והשעות בפורמט <code>HH:MM</code> (למשל 19:24).</p>
+    <button class="btn-ghost" id="tpl">הורד תבנית CSV</button>
+  </div>
+
+  <div class="card">
+    <h2><span class="step">2.</span> העלאת הקובץ</h2>
+    <div class="row">
+      <input type="file" id="file" accept=".csv,text/csv" />
+    </div>
+    <div class="msg" id="parseMsg"></div>
+  </div>
+
+  <div class="card" id="previewCard" style="display:none">
+    <h2><span class="step">3.</span> תצוגה מקדימה ובדיקת תקינות</h2>
+    <div class="scroll">
+      <table id="preview"></table>
+    </div>
+  </div>
+
+  <div class="card" id="exportCard" style="display:none">
+    <h2><span class="step">4.</span> ייצוא לאפליקציה</h2>
+    <p class="hint">לחיצה תיצור את הקובץ <code>shabbat-times.json</code>. זהו הקובץ שהאפליקציה והאתר קוראים.</p>
+    <button class="btn-primary" id="export" disabled>הורד shabbat-times.json</button>
+    <div class="msg" id="exportMsg"></div>
+  </div>
+</div>
+
+<script>
+// ---- Column aliases (Hebrew + English) ----
+const FIELDS = [
+  { key: 'dateISO',        names: ['תאריך', 'date', 'dateiso'] },
+  { key: 'parsha',         names: ['פרשה', 'פרשת שבוע', 'parsha', 'parasha'] },
+  { key: 'candleLighting', names: ['הדלקת נרות', 'הדלקה', 'candle', 'candlelighting'] },
+  { key: 'sunset',         names: ['שקיעה', 'שקיעת החמה', 'sunset'] },
+  { key: 'havdalah',       names: ['צאת השבת', 'צאת שבת', 'צאת', 'havdalah', 'havdala'] },
+  { key: 'rabbeinuTam',    names: ['רבנו תם', 'רבינו תם', 'צאת שבת לשיטת ר"ת', 'ר"ת', 'rabbeinutam', 'rt'] },
+];
+const TIME_KEYS = ['candleLighting', 'sunset', 'havdalah', 'rabbeinuTam'];
+
+let validRows = [];
+
+document.getElementById('tpl').onclick = () => {
+  const csv = '﻿' +
+    'תאריך,פרשה,הדלקת נרות,שקיעה,צאת השבת,רבנו תם\n' +
+    '2026-06-05,נשא,19:24,19:48,20:25,20:33\n' +
+    '2026-06-12,בהעלותך,19:27,19:51,20:28,20:36\n';
+  download(csv, 'template-shabbat.csv', 'text/csv;charset=utf-8');
+};
+
+document.getElementById('file').onchange = (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const reader = new FileReader();
+  reader.onload = () => handleCsv(String(reader.result));
+  reader.readAsText(f, 'utf-8');
+};
+
+function handleCsv(text) {
+  const parseMsg = document.getElementById('parseMsg');
+  try {
+    const rows = parseCsv(text);
+    if (rows.length < 2) throw new Error('הקובץ ריק או חסר שורות נתונים.');
+    const header = rows[0].map(h => h.replace(/^﻿/, '').trim());
+    const map = mapHeader(header);
+    const missing = FIELDS.filter(f => map[f.key] === undefined).map(f => f.names[0]);
+    if (missing.length) throw new Error('חסרות עמודות: ' + missing.join(', '));
+
+    const parsed = [];
+    for (let r = 1; r < rows.length; r++) {
+      if (rows[r].every(c => c.trim() === '')) continue;
+      const rec = { _row: r + 1, _errors: [] };
+      FIELDS.forEach(f => { rec[f.key] = (rows[r][map[f.key]] ?? '').trim(); });
+      rec.dateISO = normalizeDate(rec.dateISO);
+      validateRow(rec);
+      parsed.push(rec);
+    }
+    renderPreview(parsed);
+    validRows = parsed.filter(r => r._errors.length === 0);
+
+    const bad = parsed.length - validRows.length;
+    parseMsg.className = bad ? 'msg err' : 'msg ok';
+    parseMsg.textContent = bad
+      ? `נמצאו ${parsed.length} שורות, מתוכן ${bad} עם שגיאות (מסומנות באדום).`
+      : `נטענו ${parsed.length} שורות תקינות. ✓`;
+
+    document.getElementById('previewCard').style.display = 'block';
+    document.getElementById('exportCard').style.display = 'block';
+    document.getElementById('export').disabled = validRows.length === 0;
+  } catch (err) {
+    parseMsg.className = 'msg err';
+    parseMsg.textContent = 'שגיאה: ' + err.message;
+    document.getElementById('previewCard').style.display = 'none';
+    document.getElementById('export').disabled = true;
+  }
+}
+
+function mapHeader(header) {
+  const map = {};
+  header.forEach((h, i) => {
+    const norm = h.toLowerCase().trim();
+    FIELDS.forEach(f => {
+      if (f.names.some(n => n.toLowerCase() === norm)) map[f.key] = i;
+    });
+  });
+  return map;
+}
+
+// Accepts D/M/YYYY or D.M.YYYY (and already-ISO YYYY-MM-DD); returns YYYY-MM-DD.
+function normalizeDate(s) {
+  s = (s || '').trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  const m = s.match(/^(\d{1,2})[\/.](\d{1,2})[\/.](\d{4})$/);
+  if (!m) return s;
+  const [, d, mo, y] = m;
+  return `${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`;
+}
+
+function validateRow(rec) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(rec.dateISO) || isNaN(Date.parse(rec.dateISO)))
+    rec._errors.push('תאריך לא תקין');
+  if (!rec.parsha) rec._errors.push('פרשה חסרה');
+  TIME_KEYS.forEach(k => {
+    if (!/^([01]?\d|2[0-3]):[0-5]\d$/.test(rec[k]))
+      rec._errors.push('שעה לא תקינה');
+  });
+}
+
+function renderPreview(rows) {
+  const cols = ['תאריך', 'פרשה', 'הדלקת נרות', 'שקיעה', 'צאת השבת', 'רבנו תם', 'סטטוס'];
+  const keys = ['dateISO', 'parsha', 'candleLighting', 'sunset', 'havdalah', 'rabbeinuTam'];
+  let html = '<thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+  rows.forEach(r => {
+    const ok = r._errors.length === 0;
+    html += `<tr class="${ok ? '' : 'bad'}">` +
+      keys.map(k => `<td>${escapeHtml(r[k])}</td>`).join('') +
+      `<td>${ok ? '<span class="pill ok">תקין</span>' : `<span class="pill err">${escapeHtml(r._errors.join(', '))}</span>`}</td>` +
+      '</tr>';
+  });
+  document.getElementById('preview').innerHTML = html + '</tbody>';
+}
+
+document.getElementById('export').onclick = () => {
+  const shabbats = validRows
+    .map(r => ({
+      parsha: r.parsha,
+      dateISO: r.dateISO,
+      candleLighting: r.candleLighting,
+      sunset: r.sunset,
+      havdalah: r.havdalah,
+      rabbeinuTam: r.rabbeinuTam,
+    }))
+    .sort((a, b) => a.dateISO.localeCompare(b.dateISO));
+  const out = { updatedAt: new Date().toISOString(), source: 'manual-csv', shabbats };
+  download(JSON.stringify(out, null, 2), 'shabbat-times.json', 'application/json');
+  const m = document.getElementById('exportMsg');
+  m.className = 'msg ok';
+  m.textContent = `נוצר shabbat-times.json עם ${shabbats.length} שבתות. העלה אותו לאתר/אחסון כדי שהאפליקציה תקרא אותו.`;
+};
+
+// ---- Minimal robust CSV parser (handles quotes, commas, CRLF) ----
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = '', i = 0, inQuotes = false;
+  while (i < text.length) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i += 2; continue; }
+      if (c === '"') { inQuotes = false; i++; continue; }
+      field += c; i++; continue;
+    }
+    if (c === '"') { inQuotes = true; i++; continue; }
+    if (c === ',') { row.push(field); field = ''; i++; continue; }
+    if (c === '\r') { i++; continue; }
+    if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; i++; continue; }
+    field += c; i++;
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function download(content, name, type) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+</script>
+</body>
+</html>
