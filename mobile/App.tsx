@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  Image,
-  Platform,
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={{ flex: 1, backgroundColor: '#0a112c', alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ color: '#e8b65a', fontSize: 28, fontWeight: 'bold' }}>שבת בירוחם</Text>
+      <Text style={{ color: '#a9b0cc', fontSize: 16, marginTop: 8 }}>כניסת שבת 19:08</Text>
+    </View>
+  );
+}
 
 // ---- Design tokens (from .stitch/DESIGN.md "Nocturnal Sanctuary") ----
 const C = {
@@ -50,26 +49,6 @@ const UPCOMING = [
 ];
 
 type Tab = 'home' | 'times' | 'about';
-
-export default function App() {
-  const [tab, setTab] = useState<Tab>('home');
-
-  return (
-    <SafeAreaView style={styles.root}>
-      <StatusBar barStyle="light-content" backgroundColor={C.bg} />
-      <Header />
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {tab === 'home' && <HomeScreen />}
-        {tab === 'times' && <TimesScreen />}
-        {tab === 'about' && <AboutScreen />}
-      </ScrollView>
-      <BottomNav tab={tab} setTab={setTab} />
-    </SafeAreaView>
-  );
-}
 
 function Header() {
   return (
