@@ -8,10 +8,10 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-  "image": "./assets/splash.png",
-  "resizeMode": "contain",
-  "backgroundColor": "#0e1530"
-},
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0e1530"
+    },
     "ios": {
       "supportsTablet": true
     },
