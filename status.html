@@ -196,6 +196,7 @@
   td.gold { color: var(--candle); font-weight: 600; }
   td.green { color: var(--green); }
   td.red   { color: var(--red); }
+  td.yellow { color: var(--yellow); }
   tr:last-child td { border-bottom: none; }
 
   .section { margin-bottom: 2.5rem; }
@@ -221,6 +222,9 @@
     <a class="repo-link" href="https://github.com/ilanmichalby/shabbat-yerucham" target="_blank">
       📂 github.com/ilanmichalby/shabbat-yerucham
     </a>
+    <a class="repo-link" href="https://ilanmichalby.github.io/shabbat-yerucham/" target="_blank">
+      🌐 האתר באוויר — ilanmichalby.github.io/shabbat-yerucham
+    </a>
   </div>
 
   <!-- Overall progress -->
@@ -230,13 +234,13 @@
       <div class="grid" style="margin-bottom:0">
         <div>
           <p style="color:var(--muted);font-size:.85rem;margin-bottom:.3rem">אתר (web)</p>
-          <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
-          <div class="progress-label"><span>55% הושלם</span><span>3 מתוך ~5 עמודים</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+          <div class="progress-label"><span>70% הושלם</span><span>פרוס ב-GitHub Pages ✅ · חסרים עמודי משנה</span></div>
         </div>
         <div>
           <p style="color:var(--muted);font-size:.85rem;margin-bottom:.3rem">אפליקציה (mobile)</p>
-          <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
-          <div class="progress-label"><span>85% הושלם</span><span>פיצ'רים מלאים, חסר פרסום</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+          <div class="progress-label"><span>90% הושלם</span><span>פיצ'רים מלאים + חתימה מוכנה, חסר פרסום בחנות</span></div>
         </div>
       </div>
     </div>
@@ -255,6 +259,15 @@
           <li><span class="icon">✅</span><span>עיצוב כהה RTL עברי (Heebo/Rubik, זהב/אינדיגו)</span></li>
           <li><span class="icon">✅</span><span>נב' עליון + נב' תחתון למובייל</span></li>
           <li><span class="icon">✅</span><span>קישורים ל-times.html ו-about.html מוכנים בנב'</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🚀 פריסה — GitHub Pages</h3>
+        <ul class="checklist">
+          <li><span class="icon">✅</span><span>האתר באוויר: <code>ilanmichalby.github.io/shabbat-yerucham</code></span></li>
+          <li><span class="icon">✅</span><span>הקבצים הועברו ל-<code>docs/</code> (מקור הפרסום)</span></li>
+          <li><span class="icon">✅</span><span>נוסף <code>.nojekyll</code> לדילוג על עיבוד Jekyll</span></li>
         </ul>
       </div>
 
@@ -287,16 +300,17 @@
           <li><span class="icon">✅</span><span>EAS build מוגדר (Android APK + bundle)</span></li>
           <li><span class="icon">✅</span><span>Package: <code>com.yerucham.shabbat</code></span></li>
           <li><span class="icon">✅</span><span>EAS Project ID קיים</span></li>
-          <li><span class="icon">✅</span><span>אייקון + splash screen מוכנים</span></li>
+          <li><span class="icon">✅</span><span>אייקון + splash screen מוכנים (splash הוגדר ב-app.json)</span></li>
+          <li><span class="icon">✅</span><span>Keystore לחתימה + תעודת upload ל-Play הופקו</span></li>
         </ul>
       </div>
 
       <div class="card">
         <h3>🗄️ נתונים</h3>
         <ul class="checklist">
-          <li><span class="icon">✅</span><span>shabbat-times.json — נתונים עדכניים עד יולי 2026</span></li>
+          <li><span class="icon">✅</span><span>shabbat-times.json — נתונים עדכניים עד ראש השנה (12.9.2026)</span></li>
           <li><span class="icon">✅</span><span>מבנה: parsha, dateISO, candleLighting, sunset, havdalah, rabbeinuTam</span></li>
-          <li><span class="icon">✅</span><span>הנתונים מ-GitHub Raw (ישירות לאפליקציה)</span></li>
+          <li><span class="icon">✅</span><span>הנתונים מ-GitHub Pages (ישירות לאפליקציה)</span></li>
           <li><span class="icon">✅</span><span>עדכון ידני דרך Admin + CSV</span></li>
         </ul>
       </div>
@@ -364,13 +378,13 @@
         <tbody>
           <tr>
             <td>Android build דרך EAS</td>
-            <td class="yellow">⏳ לא רץ</td>
-            <td>EAS מוגדר, צריך להריץ</td>
+            <td class="yellow">⏳ בתהליך</td>
+            <td>Keystore חתימה כבר קיים (הופק דרך EAS)</td>
           </tr>
           <tr>
             <td>העלאה ל-Google Play</td>
-            <td class="yellow">⏳ מוכן להתחיל</td>
-            <td>חשבון Developer קיים ✅ — צריך AAB + פרטי חנות</td>
+            <td class="yellow">⏳ בתהליך</td>
+            <td>חשבון Developer קיים ✅, תעודת upload הופקה — נותר AAB + פרטי חנות</td>
           </tr>
           <tr>
             <td>iOS build</td>
@@ -399,13 +413,13 @@
         <tbody>
           <tr>
             <td>GitHub Pages</td>
-            <td class="red">לא מופעל</td>
-            <td>site/public/ מוכן, רק צריך להפעיל בהגדרות ה-Repo</td>
+            <td class="green">✅ באוויר</td>
+            <td>מתפרסם מ-<code>docs/</code> — ilanmichalby.github.io/shabbat-yerucham</td>
           </tr>
           <tr>
             <td>עדכון shabbat-times.json</td>
             <td class="yellow">ידני</td>
-            <td>צריך לעדכן כל כמה חודשים דרך Admin</td>
+            <td>מעודכן עד 12.9.2026 — לחדש לקראת ספטמבר דרך Admin</td>
           </tr>
         </tbody>
       </table>
@@ -417,38 +431,11 @@
     <h2>🔧 איך פותרים הכל — צעד אחר צעד</h2>
 
     <div class="tip">
-      <strong>⚡ הקל ביותר להתחיל בו:</strong> הפעלת GitHub Pages לוקחת 2 דקות ומפרסמת את האתר הקיים מיד.
+      <strong>✅ האתר כבר באוויר</strong> ב-<code>ilanmichalby.github.io/shabbat-yerucham</code> (מתפרסם מתיקיית <code>docs/</code>). הצעד הבא הכי משתלם: בניית AAB והעלאה ל-Google Play.
     </div>
 
     <div class="card-wide">
-      <h3>1️⃣ פרסום האתר (GitHub Pages) — 2 דקות</h3>
-      <div class="steps">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <h4>כנס להגדרות ה-Repo</h4>
-            <p>github.com/ilanmichalby/shabbat-yerucham → Settings → Pages</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <h4>הגדר את מקור הפרסום</h4>
-            <p>Branch: <code>main</code>, Folder: <code>/site/public</code> → לחץ Save</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <h4>האתר עלה!</h4>
-            <p>הכתובת תהיה <code>ilanmichalby.github.io/shabbat-yerucham</code> תוך כדקה.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-wide">
-      <h3>2️⃣ יצירת times.html — הפרומפט כבר מוכן</h3>
+      <h3>1️⃣ יצירת times.html — הפרומפט כבר מוכן</h3>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -467,7 +454,7 @@
         <div class="step-item">
           <div class="step-num">3</div>
           <div class="step-content">
-            <h4>שמור ב-site/public/times.html</h4>
+            <h4>שמור ב-docs/times.html</h4>
             <p>הגדרת הנב' ב-index.html כבר מקשרת לשם — לא צריך לשנות כלום.</p>
           </div>
         </div>
@@ -475,7 +462,7 @@
     </div>
 
     <div class="card-wide">
-      <h3>4️⃣ בניית APK לאנדרואיד — הפצה ישירה (ללא חנות)</h3>
+      <h3>2️⃣ בניית APK לאנדרואיד — הפצה ישירה (ללא חנות)</h3>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -502,7 +489,10 @@
     </div>
 
     <div class="card-wide">
-      <h3>3️⃣ העלאה ל-Google Play — חשבון Developer קיים</h3>
+      <h3>3️⃣ העלאה ל-Google Play — חתימה כבר מוכנה</h3>
+      <div class="tip" style="margin-bottom:1rem">
+        <strong>🔑 חשוב:</strong> קבצי החתימה (<code>.jks</code>, <code>upload_certificate.pem</code>) נמצאים בתיקיית <code>mobile/</code> מחוץ לגיט — לגבות אותם במקום בטוח! בלעדיהם אי אפשר לעדכן את האפליקציה בחנות.
+      </div>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -543,7 +533,7 @@
     </div>
 
     <div class="card-wide">
-      <h3>5️⃣ עדכון נתוני שבת (תחזוקה שוטפת)</h3>
+      <h3>4️⃣ עדכון נתוני שבת (תחזוקה שוטפת)</h3>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -556,21 +546,21 @@
           <div class="step-num">2</div>
           <div class="step-content">
             <h4>פתח את לוח הניהול</h4>
-            <p><code>site/public/admin/index.html</code> — פתח בדפדפן מקומית (File → Open)</p>
+            <p><code>docs/admin/index.html</code> — או ישירות באוויר: <code>ilanmichalby.github.io/shabbat-yerucham/admin/</code></p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num">3</div>
           <div class="step-content">
             <h4>העלה CSV ושמור</h4>
-            <p>הלוח יייצר קובץ <code>shabbat-times.json</code> חדש — שמור ב-site/public/ ועשה git push.</p>
+            <p>הלוח יייצר קובץ <code>shabbat-times.json</code> חדש — שמור ב-<code>docs/</code> ועשה git push.</p>
           </div>
         </div>
       </div>
     </div>
 
     <div class="card-wide">
-      <h3>6️⃣ בניית about.html ו-parasha.html — בעתיד</h3>
+      <h3>5️⃣ בניית about.html ו-parasha.html — בעתיד</h3>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -630,21 +620,21 @@
             <td>הפעל GitHub Pages</td>
             <td class="green">קל מאוד (2 דק')</td>
             <td class="gold">🔥 גבוהה</td>
-            <td class="red">חסר</td>
+            <td class="green">✅ הושלם (docs/ + .nojekyll)</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>בנה APK לאנדרואיד (<code>eas build</code>)</td>
-            <td class="yellow">בינוני (30 דק')</td>
-            <td class="gold">🔥 גבוהה</td>
-            <td class="red">חסר</td>
-          </tr>
-          <tr>
-            <td>3</td>
             <td>העלה ל-Google Play (AAB + פרטי חנות)</td>
             <td class="yellow">בינוני (שעה)</td>
             <td class="gold">🔥 גבוהה</td>
-            <td class="yellow">⏳ מוכן להתחיל</td>
+            <td class="yellow">⏳ בתהליך — keystore ותעודת upload מוכנים</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>גבה את קבצי החתימה (.jks + pem)</td>
+            <td class="green">קל מאוד (5 דק')</td>
+            <td class="gold">🔥 גבוהה</td>
+            <td class="red">חסר</td>
           </tr>
           <tr>
             <td>4</td>
@@ -658,7 +648,7 @@
             <td>עדכן shabbat-times.json לחודשים הבאים</td>
             <td class="green">קל (Admin)</td>
             <td class="yellow">⚠️ בינונית</td>
-            <td class="yellow">עד יולי 2026</td>
+            <td class="green">מעודכן עד 12.9.2026</td>
           </tr>
           <tr>
             <td>6</td>
@@ -671,7 +661,7 @@
             <td>7</td>
             <td>צור parasha.html (HebCal API)</td>
             <td class="yellow">בינוני</td>
-            <td class="muted">낮 נמוכה</td>
+            <td class="muted">נמוכה</td>
             <td class="red">חסר</td>
           </tr>
         </tbody>
