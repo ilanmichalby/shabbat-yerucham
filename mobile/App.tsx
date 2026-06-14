@@ -33,7 +33,7 @@ type AppData = {
 
 // Times are managed manually via the admin CSV upload and published here.
 const DATA_URL =
-  'https://raw.githubusercontent.com/ilanmichalby/shabbat-yerucham/main/site/public/shabbat-times.json';
+  'https://raw.githubusercontent.com/ilanmichalby/shabbat-yerucham/main/docs/shabbat-times.json';
 
 // ---------------------------------------------------------------------------
 // Notifications

@@ -218,7 +218,7 @@
   <!-- Header -->
   <div class="hero">
     <h1>🕯️ שבת בירוחם — סטטוס פרויקט</h1>
-    <p>עודכן · 11 ביוני 2026</p>
+    <p>עודכן · 14 ביוני 2026</p>
     <a class="repo-link" href="https://github.com/ilanmichalby/shabbat-yerucham" target="_blank">
       📂 github.com/ilanmichalby/shabbat-yerucham
     </a>
@@ -235,12 +235,12 @@
         <div>
           <p style="color:var(--muted);font-size:.85rem;margin-bottom:.3rem">אתר (web)</p>
           <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
-          <div class="progress-label"><span>70% הושלם</span><span>פרוס ב-GitHub Pages ✅ · חסרים עמודי משנה</span></div>
+          <div class="progress-label"><span>70% הושלם</span><span>פרוס ב-GitHub Pages ✅ · נתונים דינמיים · חסרים עמודי משנה</span></div>
         </div>
         <div>
           <p style="color:var(--muted);font-size:.85rem;margin-bottom:.3rem">אפליקציה (mobile)</p>
           <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-          <div class="progress-label"><span>90% הושלם</span><span>פיצ'רים מלאים + חתימה מוכנה, חסר פרסום בחנות</span></div>
+          <div class="progress-label"><span>90% הושלם</span><span>URL תוקן + חתימה מוכנה, חסר build חדש + פרסום</span></div>
         </div>
       </div>
     </div>
@@ -259,6 +259,7 @@
           <li><span class="icon">✅</span><span>עיצוב כהה RTL עברי (Heebo/Rubik, זהב/אינדיגו)</span></li>
           <li><span class="icon">✅</span><span>נב' עליון + נב' תחתון למובייל</span></li>
           <li><span class="icon">✅</span><span>קישורים ל-times.html ו-about.html מוכנים בנב'</span></li>
+          <li><span class="icon">✅</span><span>טעינה דינמית מ-shabbat-times.json — אין יותר נתונים קשיחים</span></li>
         </ul>
       </div>
 
@@ -346,8 +347,8 @@
           <tr>
             <td><code>times.html</code></td>
             <td>טבלת כל שבתות העונה, שבת קרובה מודגשת</td>
-            <td class="red">חסר</td>
-            <td class="green">✅ כן (.stitch/next-prompt.md)</td>
+            <td class="green">✅ הושלם</td>
+            <td class="green">✅ כן</td>
           </tr>
           <tr>
             <td><code>about.html</code></td>
@@ -377,9 +378,14 @@
         </thead>
         <tbody>
           <tr>
+            <td>תיקון URL לנתונים (<code>docs/shabbat-times.json</code>)</td>
+            <td class="green">✅ תוקן</td>
+            <td>ה-URL הישן הצביע על <code>site/public/</code> — תוקן ל-<code>docs/</code></td>
+          </tr>
+          <tr>
             <td>Android build דרך EAS</td>
-            <td class="yellow">⏳ בתהליך</td>
-            <td>Keystore חתימה כבר קיים (הופק דרך EAS)</td>
+            <td class="yellow">⏳ לא רץ</td>
+            <td>Keystore מוכן — צריך להריץ מחדש עם תיקון ה-URL</td>
           </tr>
           <tr>
             <td>העלאה ל-Google Play</td>
@@ -435,7 +441,7 @@
     </div>
 
     <div class="card-wide">
-      <h3>1️⃣ יצירת times.html — הפרומפט כבר מוכן</h3>
+      <h3>1️⃣ times.html ✅ הושלם</h3>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -617,13 +623,41 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>הפעל GitHub Pages</td>
-            <td class="green">קל מאוד (2 דק')</td>
+            <td>תיקון URL נתונים באפליקציה</td>
+            <td class="green">—</td>
             <td class="gold">🔥 גבוהה</td>
-            <td class="green">✅ הושלם (docs/ + .nojekyll)</td>
+            <td class="green">✅ הושלם</td>
           </tr>
           <tr>
             <td>2</td>
+            <td>index.html — טעינה דינמית מ-JSON</td>
+            <td class="green">—</td>
+            <td class="gold">🔥 גבוהה</td>
+            <td class="green">✅ הושלם</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>צור times.html</td>
+            <td class="green">—</td>
+            <td class="gold">🔥 גבוהה</td>
+            <td class="green">✅ הושלם</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>GitHub Pages — פרוס מ-<code>/docs</code></td>
+            <td class="green">—</td>
+            <td class="gold">🔥 גבוהה</td>
+            <td class="green">✅ באוויר</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>בנה APK חדש לאנדרואיד (<code>eas build</code>)</td>
+            <td class="yellow">בינוני (30 דק')</td>
+            <td class="gold">🔥 גבוהה</td>
+            <td class="red">חסר</td>
+          </tr>
+          <tr>
+            <td>6</td>
             <td>העלה ל-Google Play (AAB + פרטי חנות)</td>
             <td class="yellow">בינוני (שעה)</td>
             <td class="gold">🔥 גבוהה</td>
@@ -637,28 +671,21 @@
             <td class="red">חסר</td>
           </tr>
           <tr>
-            <td>4</td>
-            <td>צור times.html (פרומפט מוכן)</td>
-            <td class="green">קל — פרומפט קיים</td>
-            <td class="gold">🔥 גבוהה</td>
-            <td class="red">חסר</td>
-          </tr>
-          <tr>
-            <td>5</td>
+            <td>7</td>
             <td>עדכן shabbat-times.json לחודשים הבאים</td>
             <td class="green">קל (Admin)</td>
             <td class="yellow">⚠️ בינונית</td>
             <td class="green">מעודכן עד 12.9.2026</td>
           </tr>
           <tr>
-            <td>6</td>
+            <td>8</td>
             <td>צור about.html</td>
             <td class="green">קל</td>
             <td class="yellow">⚠️ בינונית</td>
             <td class="red">חסר</td>
           </tr>
           <tr>
-            <td>7</td>
+            <td>9</td>
             <td>צור parasha.html (HebCal API)</td>
             <td class="yellow">בינוני</td>
             <td class="muted">נמוכה</td>
