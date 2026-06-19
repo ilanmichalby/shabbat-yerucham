@@ -322,10 +322,10 @@ export default function App() {
           <>
             {/* Hero */}
             <View style={styles.hero}>
-              <Text style={styles.heroCity}>ירוחם</Text>
-              {!!data.current?.parsha && (
+              <Text style={styles.heroCity}>{data.current?.parsha || 'שבת'}</Text>
+              {!!data.current?.dateISO && (
                 <Text style={styles.heroSub}>
-                  {data.current.parsha} · {formatDate(data.current.dateISO)}
+                  {formatDate(data.current.dateISO)}
                 </Text>
               )}
             </View>
