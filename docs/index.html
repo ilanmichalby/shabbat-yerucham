@@ -33,8 +33,6 @@
 <title>מתי שבת בירוחם</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -148,6 +146,26 @@
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- אייקונים מוטמעים. הוחלפו את Material Symbols, שרינדר את שם האייקון
+     כטקסט ("light_mode") בכל פעם שהפונט של גוגל לא הספיק להיטען. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3.5 10.6 12 3.5l8.5 7.1V20a1 1 0 0 1-1 1h-4.6v-6.4H9.1V21H4.5a1 1 0 0 1-1-1z"/>
+</symbol>
+<symbol id="i-schedule" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.6"/><path d="M12 6.9V12l3.4 2.2"/>
+</symbol>
+<symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.6"/><path d="M12 11.2v5.2"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/>
+</symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+<circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/>
+<path d="M12 1.8v2.4M12 19.8v2.4M22.2 12h-2.4M4.2 12H1.8M19.21 4.79l-1.7 1.7M6.49 17.51l-1.7 1.7M19.21 19.21l-1.7-1.7M6.49 6.49l-1.7-1.7"/>
+</symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 2.6l2.88 5.84 6.44.94-4.66 4.54 1.1 6.42L12 17.31l-5.76 3.03 1.1-6.42L2.68 9.38l6.44-.94z"/>
+</symbol>
+</svg>
 <!-- TopNavBar Shell -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 h-16">
 <div class="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-[600px] mx-auto h-full">
@@ -157,14 +175,6 @@
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="times.html">זמנים</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="about.html">אודות</a>
 </nav>
-<div class="flex items-center gap-stack-sm">
-<button class="p-2 text-primary">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-</button>
-<button class="md:hidden p-2 text-on-surface-variant">
-<span class="material-symbols-outlined" data-icon="menu">menu</span>
-</button>
-</div>
 </div>
 </header>
 <main class="flex-grow pt-24 pb-stack-lg w-full max-w-[600px] mx-auto px-margin-mobile md:px-margin-desktop">
@@ -180,18 +190,24 @@
 <!-- Card 1: Candle Lighting -->
 <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center glow-gold">
 <div class="mb-2 text-primary-fixed-dim">
-<span class="material-symbols-outlined text-[32px]" data-icon="light_mode" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg>
 </div>
 <h2 class="font-label-md text-label-md text-on-surface-variant mb-4">כניסת שבת — הדלקת נרות</h2>
 <div id="time-candle" class="font-display-time text-display-time text-primary-container">--:--</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 w-full font-label-sm text-label-sm text-on-surface-variant">
+                שקיעה <span id="time-sunset" class="text-primary-fixed-dim font-medium">--:--</span>
+            </div>
 </div>
 <!-- Card 2: Havdalah -->
 <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
 <div class="mb-2 text-on-surface-variant">
-<span class="material-symbols-outlined text-[32px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>
 </div>
 <h2 class="font-label-md text-label-md text-on-surface-variant mb-4">צאת השבת</h2>
 <div id="time-havdalah" class="font-display-time text-display-time text-primary-container">--:--</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 w-full font-label-sm text-label-sm text-on-surface-variant">
+                רבנו תם <span id="time-rt" class="text-primary-fixed-dim font-medium">--:--</span>
+            </div>
 </div>
 </section>
 <!-- Desert Atmosphere Image -->
@@ -240,15 +256,15 @@
 <!-- Mobile Navigation Shell (Conditional) -->
 <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
 <a href="index.html" class="flex flex-col items-center text-primary">
-<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true" stroke-width="2.2"><use href="#i-home"/></svg>
 <span class="text-[10px] font-label-sm">בית</span>
 </a>
 <a href="times.html" class="flex flex-col items-center text-on-surface-variant">
-<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-schedule"/></svg>
 <span class="text-[10px] font-label-sm">זמנים</span>
 </a>
 <a href="about.html" class="flex flex-col items-center text-on-surface-variant">
-<span class="material-symbols-outlined" data-icon="info">info</span>
+<svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-info"/></svg>
 <span class="text-[10px] font-label-sm">אודות</span>
 </a>
 </nav>
@@ -281,6 +297,9 @@
                 // Update main cards
                 document.getElementById('time-candle').textContent = current.candleLighting;
                 document.getElementById('time-havdalah').textContent = current.havdalah;
+                // Secondary times: the luach does not always carry them.
+                document.getElementById('time-sunset').textContent = current.sunset ?? '--:--';
+                document.getElementById('time-rt').textContent = current.rabbeinuTam ?? '--:--';
 
                 // Update upcoming table
                 const tbody = document.getElementById('upcoming-tbody');
