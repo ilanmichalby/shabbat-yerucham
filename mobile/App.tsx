@@ -39,12 +39,36 @@ const DATA_URL =
 // Notifications
 // ---------------------------------------------------------------------------
 
+type TimeKey = 'candleLighting' | 'sunset' | 'havdalah' | 'rabbeinuTam';
+
+type DisplayPrefs = {
+  // Which time cards are visible, and which one gets the big highlighted card.
+  visible: Record<TimeKey, boolean>;
+  primary: TimeKey;
+};
+
 type NotifPrefs = {
   friday10: boolean;
   hourBefore: boolean;
   halfHourBefore: boolean;
   custom: { enabled: boolean; weekday: number /* 1=ראשון..7=שבת */; hour: number; minute: number };
 };
+
+const DEFAULT_DISPLAY: DisplayPrefs = {
+  visible: { candleLighting: true, sunset: true, havdalah: true, rabbeinuTam: true },
+  primary: 'candleLighting',
+};
+
+const DISPLAY_KEY = 'display-prefs-v1';
+
+const TIME_LABELS: Record<TimeKey, string> = {
+  candleLighting: 'כניסת שבת — הדלקת נרות',
+  sunset: 'שקיעה',
+  havdalah: 'צאת השבת',
+  rabbeinuTam: 'צאת שבת (רבנו תם)',
+};
+
+const TIME_ORDER: TimeKey[] = ['candleLighting', 'sunset', 'havdalah', 'rabbeinuTam'];
 
 const DEFAULT_PREFS: NotifPrefs = {
   friday10: false,
@@ -93,6 +117,29 @@ async function loadPrefs(): Promise<NotifPrefs> {
 async function savePrefs(prefs: NotifPrefs): Promise<void> {
   try {
     await AsyncStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  } catch {
+    // ignore persistence errors
+  }
+}
+
+async function loadDisplayPrefs(): Promise<DisplayPrefs> {
+  try {
+    const raw = await AsyncStorage.getItem(DISPLAY_KEY);
+    if (!raw) return DEFAULT_DISPLAY;
+    const parsed = JSON.parse(raw);
+    return {
+      ...DEFAULT_DISPLAY,
+      ...parsed,
+      visible: { ...DEFAULT_DISPLAY.visible, ...parsed.visible },
+    };
+  } catch {
+    return DEFAULT_DISPLAY;
+  }
+}
+
+async function saveDisplayPrefs(prefs: DisplayPrefs): Promise<void> {
+  try {
+    await AsyncStorage.setItem(DISPLAY_KEY, JSON.stringify(prefs));
   } catch {
     // ignore persistence errors
   }
@@ -245,6 +292,7 @@ export default function App() {
   const [allShabbats, setAllShabbats] = useState<Shabbat[]>([]);
   const [error, setError] = useState(false);
   const [prefs, setPrefs] = useState<NotifPrefs>(DEFAULT_PREFS);
+  const [display, setDisplay] = useState<DisplayPrefs>(DEFAULT_DISPLAY);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const responseListener = useRef<Notifications.EventSubscription | null>(null);
 
@@ -256,6 +304,7 @@ export default function App() {
       })
       .catch(() => setError(true));
     loadPrefs().then(setPrefs);
+    loadDisplayPrefs().then(setDisplay);
 
     // Handle taps on notification action buttons.
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
@@ -295,6 +344,11 @@ export default function App() {
     savePrefs(next);
   }, []);
 
+  const updateDisplay = useCallback((next: DisplayPrefs) => {
+    setDisplay(next);
+    saveDisplayPrefs(next);
+  }, []);
+
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.header}>
@@ -332,10 +386,16 @@ export default function App() {
 
             {/* Time cards */}
             <View style={styles.cards}>
-              <Card label="כניסת שבת — הדלקת נרות" value={data.current?.candleLighting} highlight />
-              <Card label="שקיעה" value={data.current?.sunset} />
-              <Card label="צאת השבת" value={data.current?.havdalah} />
-              <Card label="צאת שבת (רבנו תם)" value={data.current?.rabbeinuTam} />
+              {TIME_ORDER.filter((key) => display.visible[key] || key === display.primary).map(
+                (key) => (
+                  <Card
+                    key={key}
+                    label={TIME_LABELS[key]}
+                    value={data.current?.[key]}
+                    highlight={key === display.primary}
+                  />
+                )
+              )}
             </View>
 
             {/* Upcoming */}
@@ -372,6 +432,8 @@ export default function App() {
         visible={settingsOpen}
         prefs={prefs}
         onChange={updatePrefs}
+        display={display}
+        onDisplayChange={updateDisplay}
         onClose={() => setSettingsOpen(false)}
       />
     </SafeAreaView>
@@ -380,12 +442,21 @@ export default function App() {
 
 function Card({ label, value, highlight }: { label: string; value?: string; highlight?: boolean }) {
   return (
-    <View style={[styles.card, highlight && styles.cardHighlight]}>
+    <View style={[styles.card, highlight ? styles.cardHighlight : styles.cardSecondary]}>
       <Text style={styles.cardLabel}>{label}</Text>
-      <Text style={styles.cardValue}>{value ?? '--:--'}</Text>
+      <Text style={[styles.cardValue, !highlight && styles.cardValueSmall]}>
+        {value ?? '--:--'}
+      </Text>
     </View>
   );
 }
+
+const SHORT_LABELS: Record<TimeKey, string> = {
+  candleLighting: 'הדלקת נרות',
+  sunset: 'שקיעה',
+  havdalah: 'צאת השבת',
+  rabbeinuTam: 'רבנו תם',
+};
 
 const WEEKDAYS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳']; // index 0 => weekday 1 (ראשון)
 
@@ -393,11 +464,15 @@ function SettingsModal({
   visible,
   prefs,
   onChange,
+  display,
+  onDisplayChange,
   onClose,
 }: {
   visible: boolean;
   prefs: NotifPrefs;
   onChange: (next: NotifPrefs) => void;
+  display: DisplayPrefs;
+  onDisplayChange: (next: DisplayPrefs) => void;
   onClose: () => void;
 }) {
   const [showTimePicker, setShowTimePicker] = useState(false);
@@ -420,10 +495,50 @@ function SettingsModal({
             <Pressable onPress={onClose} hitSlop={12}>
               <Text style={styles.modalClose}>✕</Text>
             </Pressable>
-            <Text style={styles.modalTitle}>התראות</Text>
+            <Text style={styles.modalTitle}>הגדרות</Text>
           </View>
 
           <ScrollView contentContainerStyle={styles.modalScroll}>
+            <Text style={styles.groupTitle}>תצוגת זמנים</Text>
+            <Text style={styles.customLabel}>הזמן המרכזי</Text>
+            <View style={styles.primaryRow}>
+              {TIME_ORDER.map((key) => {
+                const active = display.primary === key;
+                return (
+                  <Pressable
+                    key={key}
+                    style={[styles.primaryChip, active && styles.primaryChipActive]}
+                    onPress={() =>
+                      onDisplayChange({
+                        ...display,
+                        primary: key,
+                        visible: { ...display.visible, [key]: true },
+                      })
+                    }
+                  >
+                    <Text style={[styles.primaryChipText, active && styles.primaryChipTextActive]}>
+                      {SHORT_LABELS[key]}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+
+            {TIME_ORDER.map((key) => (
+              <SettingRow
+                key={key}
+                label={`הצג ${SHORT_LABELS[key]}`}
+                value={display.visible[key] || display.primary === key}
+                disabled={display.primary === key}
+                onValueChange={(val) =>
+                  onDisplayChange({ ...display, visible: { ...display.visible, [key]: val } })
+                }
+              />
+            ))}
+
+            <View style={styles.divider} />
+
+            <Text style={styles.groupTitle}>התראות</Text>
             <SettingRow
               label="יום שישי בבוקר (10:00)"
               value={prefs.friday10}
@@ -509,16 +624,19 @@ function SettingRow({
   label,
   value,
   onValueChange,
+  disabled,
 }: {
   label: string;
   value: boolean;
   onValueChange: (val: boolean) => void;
+  disabled?: boolean;
 }) {
   return (
     <View style={styles.settingRow}>
       <Switch
         value={value}
         onValueChange={onValueChange}
+        disabled={disabled}
         trackColor={{ false: '#2c3566', true: '#e8b65a' }}
         thumbColor={value ? '#f1be62' : '#a9b0cc'}
       />
@@ -559,8 +677,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardHighlight: { borderColor: '#e8b65a66' },
+  cardSecondary: { paddingVertical: 16 },
   cardLabel: { color: '#a9b0cc', fontSize: 14, marginBottom: 10 },
   cardValue: { color: '#f1be62', fontSize: 44, fontWeight: '700', letterSpacing: -1 },
+  cardValueSmall: { fontSize: 30 },
 
   section: { marginTop: 32 },
   sectionTitle: {
@@ -624,6 +744,29 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   settingLabel: { color: '#f5f1e6', fontSize: 16, flex: 1, textAlign: 'right', marginLeft: 12 },
+  groupTitle: {
+    color: '#ffd388',
+    fontSize: 16,
+    fontWeight: '700',
+    textAlign: 'right',
+    marginTop: 8,
+  },
+  primaryRow: {
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 4,
+  },
+  primaryChip: {
+    borderWidth: 1,
+    borderColor: '#2c3566',
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  primaryChipActive: { backgroundColor: '#e8b65a', borderColor: '#e8b65a' },
+  primaryChipText: { color: '#a9b0cc', fontSize: 14, fontWeight: '600' },
+  primaryChipTextActive: { color: '#0a112c' },
   divider: { height: 1, backgroundColor: '#2c356680', marginVertical: 8 },
   customBox: { marginTop: 4 },
   customLabel: { color: '#a9b0cc', fontSize: 14, textAlign: 'right', marginTop: 12, marginBottom: 8 },
