@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#070d24"/>
+      <stop offset="50%" stop-color="#131c3c"/>
+      <stop offset="100%" stop-color="#33254a"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#fff0cf"/>
+      <stop offset="40%"  stop-color="#f5c469"/>
+      <stop offset="100%" stop-color="#e0873a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="55%" r="45%">
+      <stop offset="0%"   stop-color="#e8b65a" stop-opacity="0.5"/>
+      <stop offset="55%"  stop-color="#e8b65a" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#e8b65a" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="round"><rect width="1024" height="1024" rx="224"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="1024" height="1024" fill="url(#sky)"/>
+    <circle cx="512" cy="560" r="440" fill="url(#glow)"/>
+
+    <!-- Sun low on the horizon: candle-lighting time -->
+    <circle cx="512" cy="560" r="215" fill="url(#sun)"/>
+
+    <!-- Three stars: Shabbat ends when three appear. Spread across the sky so
+         they read as a constellation rather than a cluster. -->
+    <g fill="#ffe8bd">
+      <circle cx="212" cy="236" r="19"/>
+      <circle cx="388" cy="146" r="13"/>
+      <circle cx="828" cy="228" r="15"/>
+    </g>
+
+    <!-- Desert ridgeline, lighter than the sky so the horizon reads at 48px -->
+    <path fill="#3d3255" d="M0 700
+      C 130 654, 220 716, 306 700
+      C 380 686, 428 628, 516 628
+      C 604 628, 660 690, 730 704
+      C 818 722, 904 660, 1024 694
+      L 1024 1024 L 0 1024 Z"/>
+    <path fill="#1d2444" d="M0 806
+      C 156 770, 272 826, 404 810
+      C 546 792, 624 748, 728 772
+      C 856 802, 934 776, 1024 792
+      L 1024 1024 L 0 1024 Z"/>
+  </g>
+</svg>
