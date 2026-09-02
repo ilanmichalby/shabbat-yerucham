@@ -33,7 +33,6 @@
 <title>זמנים — שבת בירוחם</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -104,6 +103,33 @@
 </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- אייקונים מוטמעים. הוחלפו את Material Symbols, שרינדר את שם האייקון
+     כטקסט ("light_mode") בכל פעם שהפונט של גוגל לא הספיק להיטען. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3.5 10.6 12 3.5l8.5 7.1V20a1 1 0 0 1-1 1h-4.6v-6.4H9.1V21H4.5a1 1 0 0 1-1-1z"/>
+</symbol>
+<symbol id="i-schedule" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.6"/><path d="M12 6.9V12l3.4 2.2"/>
+</symbol>
+<symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="8.6"/><path d="M12 11.2v5.2"/><circle cx="12" cy="7.9" r="1.05" fill="currentColor" stroke="none"/>
+</symbol>
+<symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3.1"/>
+<path d="M19.1 14.6a1.5 1.5 0 0 0 .3 1.65l.05.06a1.8 1.8 0 1 1-2.55 2.55l-.06-.06a1.5 1.5 0 0 0-1.65-.3 1.5 1.5 0 0 0-.91 1.37v.17a1.8 1.8 0 0 1-3.6 0v-.09a1.5 1.5 0 0 0-.98-1.37 1.5 1.5 0 0 0-1.65.3l-.06.06A1.8 1.8 0 1 1 4.44 16.4l.06-.06a1.5 1.5 0 0 0 .3-1.65 1.5 1.5 0 0 0-1.37-.91h-.17a1.8 1.8 0 0 1 0-3.6h.09a1.5 1.5 0 0 0 1.37-.98 1.5 1.5 0 0 0-.3-1.65l-.06-.06A1.8 1.8 0 1 1 6.91 4.94l.06.06a1.5 1.5 0 0 0 1.65.3h.07a1.5 1.5 0 0 0 .91-1.37v-.17a1.8 1.8 0 0 1 3.6 0v.09a1.5 1.5 0 0 0 .91 1.37 1.5 1.5 0 0 0 1.65-.3l.06-.06a1.8 1.8 0 1 1 2.55 2.55l-.06.06a1.5 1.5 0 0 0-.3 1.65v.07a1.5 1.5 0 0 0 1.37.91h.17a1.8 1.8 0 0 1 0 3.6h-.09a1.5 1.5 0 0 0-1.37.91z"/>
+</symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+<path d="M4 7h16M4 12h16M4 17h16"/>
+</symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+<circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/>
+<path d="M12 1.8v2.4M12 19.8v2.4M22.2 12h-2.4M4.2 12H1.8M19.21 4.79l-1.7 1.7M6.49 17.51l-1.7 1.7M19.21 19.21l-1.7-1.7M6.49 6.49l-1.7-1.7"/>
+</symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 2.6l2.88 5.84 6.44.94-4.66 4.54 1.1 6.42L12 17.31l-5.76 3.03 1.1-6.42L2.68 9.38l6.44-.94z"/>
+</symbol>
+</svg>
 
 <!-- Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 h-16">
@@ -115,7 +141,7 @@
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="about.html">אודות</a>
     </nav>
     <button class="p-2 text-primary">
-      <span class="material-symbols-outlined">settings</span>
+      <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-settings"/></svg>
     </button>
   </div>
 </header>
@@ -172,15 +198,15 @@
 <!-- Mobile bottom nav -->
 <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
   <a href="index.html" class="flex flex-col items-center text-on-surface-variant">
-    <span class="material-symbols-outlined">home</span>
+    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-home"/></svg>
     <span class="text-[10px] font-label-sm">בית</span>
   </a>
   <a href="times.html" class="flex flex-col items-center text-primary">
-    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">schedule</span>
+    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true" stroke-width="2.2"><use href="#i-schedule"/></svg>
     <span class="text-[10px] font-label-sm">זמנים</span>
   </a>
   <a href="about.html" class="flex flex-col items-center text-on-surface-variant">
-    <span class="material-symbols-outlined">info</span>
+    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-info"/></svg>
     <span class="text-[10px] font-label-sm">אודות</span>
   </a>
 </nav>
