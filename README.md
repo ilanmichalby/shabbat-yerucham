@@ -60,3 +60,29 @@ window.SY_TESTER_FORM_URL = 'https://forms.gle/UZ7UUn7BD6WeUqfg6';
 ב-`sw.js`, אחרת מי שכבר התקין יישאר עם האייקון הישן בקאש.
 
 האפליקציה ב-`mobile/` עדיין משתמשת באייקון ברירת המחדל של Expo.
+
+### אנימציית השקיעה ותצוגה מקדימה ברשתות
+
+`docs/icons/sunset.gif` — אנימציית השקיעה של האייקון (יום ← לילה, 256×256,
+~290KB). היא מוצגת בראש `index.html` מעל הכותרת "ירוחם", ומי שהגדיר
+`prefers-reduced-motion: reduce` מקבל במקומה את הפריים הסטטי
+`docs/icons/sunset-still.png` (דרך `<picture>`).
+
+| קובץ | תפקיד |
+| --- | --- |
+| `docs/icons/sunset.gif` | האנימציה בראש הדף |
+| `docs/icons/sunset-still.png` | פריים לילה סטטי, ל-reduced motion |
+| `docs/icons/og-image.png` | תמונת ה-preview (1200×630) לוואטסאפ/פייסבוק/טוויטר |
+
+כל ארבעת הדפים נושאים תגי Open Graph ו-Twitter Card
+(`og:title`, `og:description`, `og:image`, `twitter:card=summary_large_image`),
+כך שקישור לאתר מוצג עם כרטיס תמונה גדול. הכתובות ב-`og:` הן **מוחלטות** —
+רשתות חברתיות לא פותרות נתיבים יחסיים. אם הדומיין ישתנה צריך לעדכן אותן
+בארבעת הדפים.
+
+שימו לב: וואטסאפ, פייסבוק וטוויטר מציגים ב-preview תמונה סטטית בלבד ואינם
+מנפישים GIF, ולכן ה-preview משתמש ב-`og-image.png` ולא בגיף. את הגיף עצמו
+אפשר לשתף ישירות בצ'אט או בסטטוס.
+
+אחרי החלפת האנימציה יש להעלות את `VERSION` ב-`sw.js` — שלושת הקבצים
+נמצאים ברשימת ה-precache.
