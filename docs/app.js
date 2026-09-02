@@ -5,12 +5,9 @@
   // ---------------------------------------------------------------------------
   // Configuration
   //
-  // The embeddable form that collects tester Gmail addresses lives in
-  // form-config.js, so the URL can be swapped without touching this file.
-  // Works with any form that allows embedding, e.g.
-  //   Google Forms: https://docs.google.com/forms/d/e/<id>/viewform?embedded=true
-  //   Fillout:      https://forms.fillout.com/t/<formId>
-  //   Airtable:     https://airtable.com/embed/<formId>
+  // The form that collects tester Gmail addresses lives in form-config.js, so
+  // the URL can be swapped without touching this file. It opens in a new tab —
+  // no embedding — so any form service works.
   // Leave it empty and the button falls back to a pre-filled email instead.
   // ---------------------------------------------------------------------------
   var TESTER_FORM_URL = window.SY_TESTER_FORM_URL || '';
@@ -76,17 +73,6 @@
     'font-size:22px;line-height:1;cursor:pointer;padding:4px}',
     '.sy-steps{margin:10px 0 0;padding-inline-start:18px;font-size:13px;line-height:1.9;color:#d3c5b2}',
     '.sy-steps b{color:#ffd388}',
-    '.sy-modal{position:fixed;inset:0;z-index:200;background:rgba(5,12,39,.82);backdrop-filter:blur(6px);',
-    'display:none;align-items:center;justify-content:center;padding:16px}',
-    '.sy-modal.sy-open{display:flex}',
-    '.sy-modal-card{position:relative;width:100%;max-width:640px;height:min(86vh,760px);',
-    'background:#131a35;border:1px solid rgba(232,182,90,.25);border-radius:20px;overflow:hidden;',
-    'display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.6)}',
-    '.sy-modal-head{padding:16px 52px 14px 20px;border-bottom:1px solid rgba(79,69,55,.4)}',
-    '.sy-modal-head h2{margin:0 0 4px;font-size:18px;font-weight:700;color:#ffd388;',
-    'font-family:Heebo,Rubik,sans-serif}',
-    '.sy-modal-head p{margin:0;font-size:13px;color:#d3c5b2;font-family:Heebo,Rubik,sans-serif;line-height:1.5}',
-    '.sy-modal-card iframe{flex:1;width:100%;border:0;background:#fff}',
     '.sy-fab{background:none;border:0;padding:0;font:inherit;color:#ffd388;cursor:pointer;',
     'text-decoration:underline;text-underline-offset:3px}',
   ].join('');
@@ -164,46 +150,22 @@
   // ---------------------------------------------------------------------------
   // Tester signup
   // ---------------------------------------------------------------------------
-  var testerModal = null;
-
   function openTesterForm() {
     set(STORE.testerSignedUp, '1');
 
-    if (!TESTER_FORM_URL) {
-      var subject = encodeURIComponent('רוצה להיות בודק/ת של אפליקציית "מתי שבת בירוחם"');
-      var body = encodeURIComponent(
-        'היי,\n\nאשמח להצטרף כבודק/ת לאפליקציית האנדרואיד.\n\n' +
-        'כתובת הג\'ימייל שלי (זו שאיתה אני מחובר/ת ל-Google Play):\n\n\nתודה!'
-      );
-      window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject=' + subject + '&body=' + body;
+    if (TESTER_FORM_URL) {
+      // A new tab keeps the app open behind the form, so people come back to it
+      // once they are done.
+      window.open(TESTER_FORM_URL, '_blank', 'noopener');
       return;
     }
 
-    if (!testerModal) {
-      testerModal = document.createElement('div');
-      testerModal.className = 'sy-modal';
-      testerModal.dir = 'rtl';
-      testerModal.innerHTML =
-        '<div class="sy-modal-card">' +
-          '<button type="button" class="sy-close" aria-label="סגירה">&times;</button>' +
-          '<div class="sy-modal-head">' +
-            '<h2>הרשמה כבודק/ת לאפליקציית האנדרואיד</h2>' +
-            '<p>השאירו את כתובת הג\'ימייל שאיתה אתם מחוברים ל-Google Play — נשלח אליכם קישור להתקנה.</p>' +
-          '</div>' +
-          '<iframe title="טופס הרשמה כבודקים" loading="lazy"></iframe>' +
-        '</div>';
-
-      testerModal.addEventListener('click', function (e) {
-        if (e.target === testerModal || e.target.classList.contains('sy-close')) {
-          testerModal.classList.remove('sy-open');
-        }
-      });
-      document.body.appendChild(testerModal);
-    }
-
-    var frame = testerModal.querySelector('iframe');
-    if (!frame.src) frame.src = TESTER_FORM_URL;
-    testerModal.classList.add('sy-open');
+    var subject = encodeURIComponent('רוצה להיות בודק/ת של אפליקציית "מתי שבת בירוחם"');
+    var body = encodeURIComponent(
+      'היי,\n\nאשמח להצטרף כבודק/ת לאפליקציית האנדרואיד.\n\n' +
+      'כתובת הג\'ימייל שלי (זו שאיתה אני מחובר/ת ל-Google Play):\n\n\nתודה!'
+    );
+    window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject=' + subject + '&body=' + body;
   }
 
   function maybeShowTesterInvite() {

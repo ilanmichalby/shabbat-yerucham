@@ -31,22 +31,18 @@
 4 שניות הזמנה להירשם כבודק/ת לאפליקציית האנדרואיד. בנוסף יש קישור קבוע
 בפוטר של כל דף — כל אלמנט עם התכונה `data-sy-tester` פותח את אותו טופס.
 
-**כדי לחבר את הטופס**, ערכו שורה אחת ב-`docs/form-config.js`:
+הטופס עצמו הוא Google Form שאוסף כתובת ג'ימייל אחת. זו הכתובת שמודבקת
+ל-Play Console תחת Closed testing ← Testers ← Email list.
+
+הטופס נפתח בלשונית חדשה (לא מוטמע), ולכן כל שירות טפסים מתאים. **כדי להחליף
+אותו**, ערכו שורה אחת ב-`docs/form-config.js`:
 
 ```js
-window.SY_TESTER_FORM_URL = 'https://docs.google.com/forms/d/e/<id>/viewform?embedded=true';
+window.SY_TESTER_FORM_URL = 'https://forms.gle/UZ7UUn7BD6WeUqfg6';
 ```
-
-ב-Google Forms מעתיקים את הכתובת מתוך "שליחה" (Send) ← לשונית `<>` — זו
-הכתובת עם ה-`/d/e/`, ולא זו שמופיעה בשורת הכתובת בזמן העריכה. עובד באותה
-מידה עם Fillout (`https://forms.fillout.com/t/<formId>`) או Airtable
-(`https://airtable.com/embed/<formId>`).
 
 הטופס נפתח ב-iframe בתוך מודאל מעוצב, כך שאין צורך במפתחות API בקוד הציבורי.
 כל עוד המשתנה ריק, הכפתור נופל בחזרה למייל מוכן מראש (`FALLBACK_EMAIL`).
-
-הטופס צריך שדה אחד בלבד: **כתובת הג'ימייל שאיתה המשתמש מחובר ל-Google Play**.
-זו הכתובת שמודבקת ל-Play Console תחת Closed testing ← Testers ← Email list.
 
 ### עדכון גרסה
 
