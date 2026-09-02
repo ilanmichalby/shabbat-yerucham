@@ -252,6 +252,20 @@
 <span class="text-[10px] font-label-sm">אודות</span>
 </a>
 </nav>
+<!-- Display settings sheet -->
+<div id="settings-backdrop" class="fixed inset-0 z-[130] bg-black/60 backdrop-blur-sm hidden items-end md:items-center justify-center p-0 md:p-4">
+<div role="dialog" aria-modal="true" aria-labelledby="settings-title" class="w-full max-w-[560px] bg-surface-container-low border border-outline-variant/40 rounded-t-2xl md:rounded-2xl p-6 max-h-[85vh] overflow-y-auto">
+<div class="flex flex-row-reverse items-center justify-between mb-4">
+<h2 id="settings-title" class="font-headline-md text-headline-md text-primary">הגדרות תצוגה</h2>
+<button id="settings-close" type="button" aria-label="סגור" class="text-on-surface-variant hover:text-primary-fixed-dim text-xl leading-none p-2 -m-2">✕</button>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant text-right mb-3">הזמן המרכזי</p>
+<div id="settings-primary" class="flex flex-row-reverse flex-wrap gap-2 mb-6"></div>
+<p class="font-label-md text-label-md text-on-surface-variant text-right mb-3">אילו זמנים להציג</p>
+<div id="settings-visible" class="flex flex-col gap-1"></div>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 text-right mt-6 leading-relaxed">ההעדפות נשמרות בדפדפן הזה בלבד.</p>
+</div>
+</div>
 <script>
         const DATA_URL = 'https://raw.githubusercontent.com/ilanmichalby/shabbat-yerucham/main/docs/shabbat-times.json';
 
@@ -466,20 +480,6 @@
         `;
         document.head.appendChild(style);
     </script>
-<!-- Display settings sheet -->
-<div id="settings-backdrop" class="fixed inset-0 z-[130] bg-black/60 backdrop-blur-sm hidden items-end md:items-center justify-center p-0 md:p-4">
-<div role="dialog" aria-modal="true" aria-labelledby="settings-title" class="w-full max-w-[560px] bg-surface-container-low border border-outline-variant/40 rounded-t-2xl md:rounded-2xl p-6 max-h-[85vh] overflow-y-auto">
-<div class="flex flex-row-reverse items-center justify-between mb-4">
-<h2 id="settings-title" class="font-headline-md text-headline-md text-primary">הגדרות תצוגה</h2>
-<button id="settings-close" type="button" aria-label="סגור" class="text-on-surface-variant hover:text-primary-fixed-dim text-xl leading-none p-2 -m-2">✕</button>
-</div>
-<p class="font-label-md text-label-md text-on-surface-variant text-right mb-3">הזמן המרכזי</p>
-<div id="settings-primary" class="flex flex-row-reverse flex-wrap gap-2 mb-6"></div>
-<p class="font-label-md text-label-md text-on-surface-variant text-right mb-3">אילו זמנים להציג</p>
-<div id="settings-visible" class="flex flex-col gap-1"></div>
-<p class="font-label-sm text-label-sm text-on-surface-variant/70 text-right mt-6 leading-relaxed">ההעדפות נשמרות בדפדפן הזה בלבד.</p>
-</div>
-</div>
 <script src="form-config.js" defer></script>
 <script src="app.js" defer></script>
 </body></html>
