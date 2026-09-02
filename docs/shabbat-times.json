@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-31T00:00:00.000Z",
+  "updatedAt": "2026-09-02T00:00:00.000Z",
   "source": "manual-csv",
   "shabbats": [
     {
@@ -115,12 +115,492 @@
       "rabbeinuTam": "20:11"
     },
     {
-      "parsha": "ראש השנה",
+      "parsha": "א׳ ראש השנה",
       "dateISO": "2026-09-12",
       "candleLighting": "18:34",
       "sunset": "18:54",
       "havdalah": "19:26",
-      "rabbeinuTam": "20:02"
+      "rabbeinuTam": "—"
+    },
+    {
+      "parsha": "ב׳ ראש השנה (אחרי צאת שבת)",
+      "dateISO": "2026-09-13",
+      "candleLighting": "19:26",
+      "sunset": "18:53",
+      "havdalah": "19:25",
+      "rabbeinuTam": "20:01"
+    },
+    {
+      "parsha": "האזינו, שבת תשובה",
+      "dateISO": "2026-09-19",
+      "candleLighting": "18:25",
+      "sunset": "18:45",
+      "havdalah": "19:17",
+      "rabbeinuTam": "19:53"
+    },
+    {
+      "parsha": "יום כיפור",
+      "dateISO": "2026-09-21",
+      "candleLighting": "18:23",
+      "sunset": "18:43",
+      "havdalah": "19:14",
+      "rabbeinuTam": "19:50"
+    },
+    {
+      "parsha": "סוכות",
+      "dateISO": "2026-09-26",
+      "candleLighting": "18:16",
+      "sunset": "18:36",
+      "havdalah": "19:08",
+      "rabbeinuTam": "19:44"
+    },
+    {
+      "parsha": "שמיני עצרת",
+      "dateISO": "2026-10-03",
+      "candleLighting": "18:07",
+      "sunset": "18:27",
+      "havdalah": "18:59",
+      "rabbeinuTam": "19:35"
+    },
+    {
+      "parsha": "בראשית",
+      "dateISO": "2026-10-10",
+      "candleLighting": "17:59",
+      "sunset": "18:19",
+      "havdalah": "18:51",
+      "rabbeinuTam": "19:27"
+    },
+    {
+      "parsha": "נח",
+      "dateISO": "2026-10-17",
+      "candleLighting": "17:51",
+      "sunset": "18:11",
+      "havdalah": "18:43",
+      "rabbeinuTam": "19:19"
+    },
+    {
+      "parsha": "לך לך",
+      "dateISO": "2026-10-24",
+      "candleLighting": "17:43",
+      "sunset": "18:03",
+      "havdalah": "18:36",
+      "rabbeinuTam": "19:11"
+    },
+    {
+      "parsha": "וירא",
+      "dateISO": "2026-10-31",
+      "candleLighting": "16:37",
+      "sunset": "16:57",
+      "havdalah": "17:30",
+      "rabbeinuTam": "18:05"
+    },
+    {
+      "parsha": "חיי שרה",
+      "dateISO": "2026-11-07",
+      "candleLighting": "16:31",
+      "sunset": "16:51",
+      "havdalah": "17:25",
+      "rabbeinuTam": "17:59"
+    },
+    {
+      "parsha": "תולדות",
+      "dateISO": "2026-11-14",
+      "candleLighting": "16:27",
+      "sunset": "16:47",
+      "havdalah": "17:21",
+      "rabbeinuTam": "17:55"
+    },
+    {
+      "parsha": "ויצא",
+      "dateISO": "2026-11-21",
+      "candleLighting": "16:23",
+      "sunset": "16:43",
+      "havdalah": "17:18",
+      "rabbeinuTam": "17:52"
+    },
+    {
+      "parsha": "וישלח",
+      "dateISO": "2026-11-28",
+      "candleLighting": "16:21",
+      "sunset": "16:41",
+      "havdalah": "17:17",
+      "rabbeinuTam": "17:50"
+    },
+    {
+      "parsha": "וישב, א׳ חנוכה",
+      "dateISO": "2026-12-05",
+      "candleLighting": "16:21",
+      "sunset": "16:41",
+      "havdalah": "17:17",
+      "rabbeinuTam": "17:50"
+    },
+    {
+      "parsha": "מקץ, ח׳ חנוכה",
+      "dateISO": "2026-12-12",
+      "candleLighting": "16:22",
+      "sunset": "16:42",
+      "havdalah": "17:18",
+      "rabbeinuTam": "17:51"
+    },
+    {
+      "parsha": "ויגש",
+      "dateISO": "2026-12-19",
+      "candleLighting": "16:24",
+      "sunset": "16:44",
+      "havdalah": "17:21",
+      "rabbeinuTam": "17:53"
+    },
+    {
+      "parsha": "ויחי",
+      "dateISO": "2026-12-26",
+      "candleLighting": "16:28",
+      "sunset": "16:48",
+      "havdalah": "17:25",
+      "rabbeinuTam": "17:57"
+    },
+    {
+      "parsha": "שמות",
+      "dateISO": "2027-01-02",
+      "candleLighting": "16:32",
+      "sunset": "16:52",
+      "havdalah": "17:29",
+      "rabbeinuTam": "18:02"
+    },
+    {
+      "parsha": "וארא, ראש חודש שבט",
+      "dateISO": "2027-01-09",
+      "candleLighting": "16:38",
+      "sunset": "16:58",
+      "havdalah": "17:34",
+      "rabbeinuTam": "18:07"
+    },
+    {
+      "parsha": "בא",
+      "dateISO": "2027-01-16",
+      "candleLighting": "16:43",
+      "sunset": "17:03",
+      "havdalah": "17:40",
+      "rabbeinuTam": "18:13"
+    },
+    {
+      "parsha": "בשלח, שירה, ט״ו בשבט",
+      "dateISO": "2027-01-23",
+      "candleLighting": "16:50",
+      "sunset": "17:10",
+      "havdalah": "17:46",
+      "rabbeinuTam": "18:19"
+    },
+    {
+      "parsha": "יתרו",
+      "dateISO": "2027-01-30",
+      "candleLighting": "16:56",
+      "sunset": "17:16",
+      "havdalah": "17:52",
+      "rabbeinuTam": "18:26"
+    },
+    {
+      "parsha": "משפטים",
+      "dateISO": "2027-02-06",
+      "candleLighting": "17:02",
+      "sunset": "17:22",
+      "havdalah": "17:57",
+      "rabbeinuTam": "18:32"
+    },
+    {
+      "parsha": "תרומה",
+      "dateISO": "2027-02-13",
+      "candleLighting": "17:08",
+      "sunset": "17:28",
+      "havdalah": "18:03",
+      "rabbeinuTam": "18:38"
+    },
+    {
+      "parsha": "תצוה",
+      "dateISO": "2027-02-20",
+      "candleLighting": "17:14",
+      "sunset": "17:34",
+      "havdalah": "18:08",
+      "rabbeinuTam": "18:43"
+    },
+    {
+      "parsha": "כי תשא",
+      "dateISO": "2027-02-27",
+      "candleLighting": "17:19",
+      "sunset": "17:39",
+      "havdalah": "18:13",
+      "rabbeinuTam": "18:49"
+    },
+    {
+      "parsha": "ויקהל, שקלים",
+      "dateISO": "2027-03-06",
+      "candleLighting": "17:24",
+      "sunset": "17:44",
+      "havdalah": "18:18",
+      "rabbeinuTam": "18:54"
+    },
+    {
+      "parsha": "פקודי",
+      "dateISO": "2027-03-13",
+      "candleLighting": "17:29",
+      "sunset": "17:49",
+      "havdalah": "18:23",
+      "rabbeinuTam": "18:59"
+    },
+    {
+      "parsha": "ויקרא, זכור",
+      "dateISO": "2027-03-20",
+      "candleLighting": "17:34",
+      "sunset": "17:54",
+      "havdalah": "18:27",
+      "rabbeinuTam": "19:03"
+    },
+    {
+      "parsha": "צו, פרה",
+      "dateISO": "2027-03-27",
+      "candleLighting": "18:38",
+      "sunset": "18:58",
+      "havdalah": "19:32",
+      "rabbeinuTam": "20:08"
+    },
+    {
+      "parsha": "שמיני, החדש",
+      "dateISO": "2027-04-03",
+      "candleLighting": "18:43",
+      "sunset": "19:03",
+      "havdalah": "19:37",
+      "rabbeinuTam": "20:12"
+    },
+    {
+      "parsha": "תזריע",
+      "dateISO": "2027-04-10",
+      "candleLighting": "18:47",
+      "sunset": "19:07",
+      "havdalah": "19:42",
+      "rabbeinuTam": "20:17"
+    },
+    {
+      "parsha": "מצרע, שבת הגדול",
+      "dateISO": "2027-04-17",
+      "candleLighting": "18:52",
+      "sunset": "19:12",
+      "havdalah": "19:47",
+      "rabbeinuTam": "20:21"
+    },
+    {
+      "parsha": "פסח",
+      "dateISO": "2027-04-22",
+      "candleLighting": "18:55",
+      "sunset": "19:15",
+      "havdalah": "19:51",
+      "rabbeinuTam": "20:25"
+    },
+    {
+      "parsha": "שבת חול המועד פסח",
+      "dateISO": "2027-04-24",
+      "candleLighting": "18:56",
+      "sunset": "19:16",
+      "havdalah": "19:52",
+      "rabbeinuTam": "20:26"
+    },
+    {
+      "parsha": "שביעי של פסח",
+      "dateISO": "2027-04-28",
+      "candleLighting": "18:59",
+      "sunset": "19:19",
+      "havdalah": "19:55",
+      "rabbeinuTam": "20:29"
+    },
+    {
+      "parsha": "אחרי מות",
+      "dateISO": "2027-05-01",
+      "candleLighting": "19:01",
+      "sunset": "19:21",
+      "havdalah": "19:57",
+      "rabbeinuTam": "20:31"
+    },
+    {
+      "parsha": "קדושים, ראש חודש אייר",
+      "dateISO": "2027-05-08",
+      "candleLighting": "19:06",
+      "sunset": "19:26",
+      "havdalah": "20:03",
+      "rabbeinuTam": "20:36"
+    },
+    {
+      "parsha": "אמור",
+      "dateISO": "2027-05-15",
+      "candleLighting": "19:11",
+      "sunset": "19:31",
+      "havdalah": "20:08",
+      "rabbeinuTam": "20:40"
+    },
+    {
+      "parsha": "בהר",
+      "dateISO": "2027-05-22",
+      "candleLighting": "19:15",
+      "sunset": "19:35",
+      "havdalah": "20:13",
+      "rabbeinuTam": "20:45"
+    },
+    {
+      "parsha": "בחקתי",
+      "dateISO": "2027-05-29",
+      "candleLighting": "19:20",
+      "sunset": "19:40",
+      "havdalah": "20:18",
+      "rabbeinuTam": "20:49"
+    },
+    {
+      "parsha": "במדבר",
+      "dateISO": "2027-06-05",
+      "candleLighting": "19:24",
+      "sunset": "19:44",
+      "havdalah": "20:23",
+      "rabbeinuTam": "20:53"
+    },
+    {
+      "parsha": "שבועות",
+      "dateISO": "2027-06-11",
+      "candleLighting": "19:27",
+      "sunset": "19:47",
+      "havdalah": "—",
+      "rabbeinuTam": "—"
+    },
+    {
+      "parsha": "נשא",
+      "dateISO": "2027-06-12",
+      "candleLighting": "19:27",
+      "sunset": "19:47",
+      "havdalah": "20:26",
+      "rabbeinuTam": "20:56"
+    },
+    {
+      "parsha": "בהעלתך",
+      "dateISO": "2027-06-19",
+      "candleLighting": "19:29",
+      "sunset": "19:49",
+      "havdalah": "20:28",
+      "rabbeinuTam": "20:58"
+    },
+    {
+      "parsha": "שלח לך",
+      "dateISO": "2027-06-26",
+      "candleLighting": "19:31",
+      "sunset": "19:51",
+      "havdalah": "20:30",
+      "rabbeinuTam": "21:00"
+    },
+    {
+      "parsha": "קרח",
+      "dateISO": "2027-07-03",
+      "candleLighting": "19:31",
+      "sunset": "19:51",
+      "havdalah": "20:30",
+      "rabbeinuTam": "21:00"
+    },
+    {
+      "parsha": "חוקת",
+      "dateISO": "2027-07-10",
+      "candleLighting": "19:30",
+      "sunset": "19:50",
+      "havdalah": "20:28",
+      "rabbeinuTam": "20:59"
+    },
+    {
+      "parsha": "בלק",
+      "dateISO": "2027-07-17",
+      "candleLighting": "19:28",
+      "sunset": "19:48",
+      "havdalah": "20:25",
+      "rabbeinuTam": "20:56"
+    },
+    {
+      "parsha": "פינחס",
+      "dateISO": "2027-07-24",
+      "candleLighting": "19:25",
+      "sunset": "19:45",
+      "havdalah": "20:21",
+      "rabbeinuTam": "20:53"
+    },
+    {
+      "parsha": "מטות מסעי",
+      "dateISO": "2027-07-31",
+      "candleLighting": "19:20",
+      "sunset": "19:40",
+      "havdalah": "20:16",
+      "rabbeinuTam": "20:48"
+    },
+    {
+      "parsha": "דברים, חזון",
+      "dateISO": "2027-08-07",
+      "candleLighting": "19:15",
+      "sunset": "19:35",
+      "havdalah": "20:10",
+      "rabbeinuTam": "20:43"
+    },
+    {
+      "parsha": "ואתחנן, נחמו",
+      "dateISO": "2027-08-14",
+      "candleLighting": "19:08",
+      "sunset": "19:28",
+      "havdalah": "20:02",
+      "rabbeinuTam": "20:36"
+    },
+    {
+      "parsha": "עקב",
+      "dateISO": "2027-08-21",
+      "candleLighting": "19:01",
+      "sunset": "19:21",
+      "havdalah": "19:54",
+      "rabbeinuTam": "20:29"
+    },
+    {
+      "parsha": "ראה",
+      "dateISO": "2027-08-28",
+      "candleLighting": "18:53",
+      "sunset": "19:13",
+      "havdalah": "19:46",
+      "rabbeinuTam": "20:21"
+    },
+    {
+      "parsha": "שופטים",
+      "dateISO": "2027-09-04",
+      "candleLighting": "18:44",
+      "sunset": "19:04",
+      "havdalah": "19:37",
+      "rabbeinuTam": "20:12"
+    },
+    {
+      "parsha": "כי תצא",
+      "dateISO": "2027-09-11",
+      "candleLighting": "18:36",
+      "sunset": "18:56",
+      "havdalah": "19:28",
+      "rabbeinuTam": "20:03"
+    },
+    {
+      "parsha": "כי תבוא",
+      "dateISO": "2027-09-18",
+      "candleLighting": "18:27",
+      "sunset": "18:47",
+      "havdalah": "19:19",
+      "rabbeinuTam": "19:55"
+    },
+    {
+      "parsha": "נצבים וילך",
+      "dateISO": "2027-09-25",
+      "candleLighting": "18:18",
+      "sunset": "18:38",
+      "havdalah": "19:10",
+      "rabbeinuTam": "19:46"
+    },
+    {
+      "parsha": "ראש השנה",
+      "dateISO": "2027-10-02",
+      "candleLighting": "18:09",
+      "sunset": "18:29",
+      "havdalah": "19:01",
+      "rabbeinuTam": "19:37"
     }
   ]
 }

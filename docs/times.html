@@ -102,16 +102,16 @@
   </section>
 
   <!-- Desktop table -->
-  <div class="glass-card rounded-2xl overflow-hidden hidden md:block mb-6">
+  <div class="glass-card rounded-2xl overflow-x-auto hidden md:block mb-6">
     <table class="w-full text-right">
       <thead>
         <tr class="bg-surface-container-high/50 border-b border-outline-variant/30">
-          <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">תאריך</th>
-          <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">פרשה</th>
-          <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">הדלקת נרות</th>
-          <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">שקיעה</th>
-          <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">צאת השבת</th>
-          <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">רבנו תם</th>
+          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">תאריך</th>
+          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">פרשה</th>
+          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">הדלקת נרות</th>
+          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">שקיעה</th>
+          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">צאת השבת</th>
+          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">רבנו תם</th>
         </tr>
       </thead>
       <tbody id="times-tbody-desktop" class="divide-y divide-outline-variant/20"></tbody>
@@ -172,29 +172,31 @@
       const json = await res.json();
       const all = (json.shabbats ?? []).slice().sort((a, b) => a.dateISO.localeCompare(b.dateISO));
       const today = new Date().toISOString().slice(0, 10);
-      const currentIdx = all.findIndex(s => s.dateISO >= today);
+      // Show the upcoming Shabbat onwards; past dates are dropped.
+      const idx = all.findIndex(s => s.dateISO >= today);
+      const upcoming = idx === -1 ? all.slice(-1) : all.slice(idx);
 
       // Desktop table
       const tbody = document.getElementById('times-tbody-desktop');
-      tbody.innerHTML = all.map((s, i) => {
-        const isCurrent = i === currentIdx;
+      tbody.innerHTML = upcoming.map((s, i) => {
+        const isCurrent = i === 0;
         return `<tr class="${isCurrent ? 'row-current' : 'hover:bg-surface-container-low'} transition-colors">
-          <td class="p-4 font-body-md text-body-md text-parchment whitespace-nowrap">
+          <td class="px-3 py-4 font-body-md text-body-md text-parchment whitespace-nowrap">
             ${fmtDate(s.dateISO)}
-            ${isCurrent ? '<span class="mr-2 text-[11px] bg-yellow-900/40 text-yellow-300 border border-yellow-700/40 rounded-full px-2 py-0.5">השבת הקרובה</span>' : ''}
+            ${isCurrent ? '<div class="mt-1 inline-block text-[11px] bg-yellow-900/40 text-yellow-300 border border-yellow-700/40 rounded-full px-2 py-0.5">השבת הקרובה</div>' : ''}
           </td>
-          <td class="p-4 font-body-md text-body-md text-parchment font-medium">${s.parsha}</td>
-          <td class="p-4 font-label-md text-primary-fixed-dim font-bold tabular-nums">${s.candleLighting}</td>
-          <td class="p-4 font-label-md text-on-surface-variant tabular-nums">${s.sunset}</td>
-          <td class="p-4 font-label-md text-primary-fixed-dim font-bold tabular-nums">${s.havdalah}</td>
-          <td class="p-4 font-label-md text-on-surface-variant tabular-nums">${s.rabbeinuTam}</td>
+          <td class="px-3 py-4 font-body-md text-body-md text-parchment font-medium min-w-[110px]">${s.parsha}</td>
+          <td class="px-3 py-4 font-label-md text-primary-fixed-dim font-bold tabular-nums whitespace-nowrap">${s.candleLighting}</td>
+          <td class="px-3 py-4 font-label-md text-on-surface-variant tabular-nums whitespace-nowrap">${s.sunset}</td>
+          <td class="px-3 py-4 font-label-md text-primary-fixed-dim font-bold tabular-nums whitespace-nowrap">${s.havdalah}</td>
+          <td class="px-3 py-4 font-label-md text-on-surface-variant tabular-nums whitespace-nowrap">${s.rabbeinuTam}</td>
         </tr>`;
       }).join('');
 
       // Mobile cards
       const mobileContainer = document.getElementById('times-cards-mobile');
-      mobileContainer.innerHTML = all.map((s, i) => {
-        const isCurrent = i === currentIdx;
+      mobileContainer.innerHTML = upcoming.map((s, i) => {
+        const isCurrent = i === 0;
         return `<div class="glass-card rounded-2xl p-4 ${isCurrent ? 'border-yellow-600/50' : ''}">
           <div class="flex justify-between items-start mb-3">
             <div>
