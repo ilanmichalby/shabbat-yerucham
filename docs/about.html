@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>אודות — שבת בירוחם</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "outline-variant": "#4f4537",
+          "primary-fixed": "#ffdea9",
+          "primary-container": "#e8b65a",
+          "surface-container-highest": "#2d3350",
+          "on-primary-container": "#664700",
+          "secondary": "#ddc48d",
+          "surface-variant": "#2d3350",
+          "surface-container-high": "#222844",
+          "secondary-fixed-dim": "#ddc48d",
+          "surface": "#0a112c",
+          "on-background": "#dde1ff",
+          "secondary-container": "#564519",
+          "on-primary": "#422d00",
+          "primary-fixed-dim": "#f1be62",
+          "surface-tint": "#f1be62",
+          "surface-container-lowest": "#050c27",
+          "on-secondary": "#3d2e05",
+          "on-surface-variant": "#d3c5b2",
+          "inverse-surface": "#dde1ff",
+          "on-surface": "#dde1ff",
+          "outline": "#9b8f7e",
+          "surface-container-low": "#131a35",
+          "inverse-on-surface": "#282f4b",
+          "surface-container": "#171e39",
+          "surface-bright": "#313854",
+          "surface-dim": "#0a112c",
+          "background": "#0a112c",
+          "primary": "#ffd388"
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"
+        },
+        fontFamily: {
+          "display-time": ["Rubik", "Heebo"],
+          "label-sm": ["Rubik", "Heebo"],
+          "label-md": ["Rubik", "Heebo"],
+          "body-lg": ["Rubik", "Heebo"],
+          "body-md": ["Rubik", "Heebo"],
+          "headline-md": ["Rubik", "Heebo"],
+          "headline-lg": ["Rubik", "Heebo"],
+          "headline-lg-mobile": ["Rubik", "Heebo"]
+        },
+        fontSize: {
+          "display-time": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Heebo', 'Rubik', sans-serif; background-color: #0a112c; }
+  .glass-card { background: rgba(27,35,71,0.8); backdrop-filter: blur(8px); border: 1px solid rgba(44,53,102,0.5); }
+  .text-parchment { color: #f5f1e6; }
+  .row-current { background: rgba(232,182,90,0.08); border-right: 3px solid #e8b65a; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 h-16">
+  <div class="flex flex-row-reverse justify-between items-center px-5 md:px-8 w-full max-w-[600px] mx-auto h-full">
+    <div class="font-headline-md text-headline-md font-bold text-primary">שבת בירוחם</div>
+    <nav class="hidden md:flex flex-row-reverse gap-4 items-center">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="index.html">בית</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="times.html">זמנים</a>
+      <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1" href="about.html">אודות</a>
+    </nav>
+    <button class="p-2 text-primary">
+      <span class="material-symbols-outlined">settings</span>
+    </button>
+  </div>
+</header>
+
+<main class="flex-grow pt-24 pb-24 md:pb-10 w-full max-w-[600px] mx-auto px-5 md:px-8">
+
+  <section class="text-center mb-8">
+    <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">אודות</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant opacity-80">מקור הזמנים המוצגים באתר</p>
+  </section>
+
+  <div class="glass-card rounded-2xl p-6 mb-6">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="material-symbols-outlined text-primary">menu_book</span>
+      <h2 class="font-headline-md text-headline-md text-primary">מקור הזמנים</h2>
+    </div>
+    <p class="font-body-md text-body-md text-parchment leading-relaxed">
+      הזמנים המוצגים באתר מבוססים על
+      <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a>
+      בעריכת הרב אודי רט.
+    </p>
+  </div>
+
+  <p class="font-label-sm text-label-sm text-on-surface-variant text-center">
+    הזמנים מיועדים לירוחם בלבד.
+  </p>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 mt-8">
+  <div class="flex flex-col items-center gap-4 py-8 w-full max-w-[600px] mx-auto text-center px-5">
+    <div class="font-headline-md text-headline-md text-primary mb-2">שבת בירוחם</div>
+    <p class="font-label-sm text-label-sm text-on-surface-variant max-w-[80%]">הזמנים מיועדים לירוחם בלבד.</p>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">על פי <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a> בעריכת הרב אודי רט</p>
+    <div class="flex gap-4">
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="terms.html">תנאי שימוש</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="privacy.html">פרטיות</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile bottom nav -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
+  <a href="index.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm">בית</span>
+  </a>
+  <a href="times.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">schedule</span>
+    <span class="text-[10px] font-label-sm">זמנים</span>
+  </a>
+  <a href="about.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">info</span>
+    <span class="text-[10px] font-label-sm">אודות</span>
+  </a>
+</nav>
+</body>
+</html>
