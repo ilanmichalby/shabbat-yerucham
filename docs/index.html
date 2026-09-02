@@ -2,6 +2,16 @@
 
 <html class="dark" dir="rtl" lang="he"><head>
 <meta charset="utf-8"/>
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest"/>
+<meta name="theme-color" content="#0a112c"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="שבת בירוחם"/>
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png"/>
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png"/>
+
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
@@ -203,9 +213,9 @@
                 על פי <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a> בעריכת הרב אודי רט
             </p>
 <div class="flex gap-stack-md">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="#">תנאי שימוש</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="#">פרטיות</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="#">צור קשר</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="terms.html">תנאי שימוש</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors active:underline" href="privacy.html">פרטיות</a>
+<a class="font-label-sm text-label-sm text-primary hover:underline transition-colors active:underline" href="#" data-sy-tester>הירשמו כבודקים לאנדרואיד</a>
 </div>
 </div>
 </footer>
@@ -293,4 +303,6 @@
         `;
         document.head.appendChild(style);
     </script>
+<script src="form-config.js" defer></script>
+<script src="app.js" defer></script>
 </body></html>

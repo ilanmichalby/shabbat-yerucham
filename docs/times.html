@@ -2,6 +2,16 @@
 <html class="dark" dir="rtl" lang="he">
 <head>
 <meta charset="utf-8"/>
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest"/>
+<meta name="theme-color" content="#0a112c"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="שבת בירוחם"/>
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png"/>
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png"/>
+
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>זמנים — שבת בירוחם</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -135,9 +145,9 @@
     <p class="font-label-sm text-label-sm text-on-surface-variant max-w-[80%]">הזמנים מיועדים לירוחם בלבד.</p>
     <p class="font-label-sm text-label-sm text-on-surface-variant">על פי <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a> בעריכת הרב אודי רט</p>
     <div class="flex gap-4">
-      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">תנאי שימוש</a>
-      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">פרטיות</a>
-      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">צור קשר</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="terms.html">תנאי שימוש</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="privacy.html">פרטיות</a>
+      <a class="font-label-sm text-label-sm text-primary hover:underline transition-colors" href="#" data-sy-tester>הירשמו כבודקים לאנדרואיד</a>
     </div>
   </div>
 </footer>
@@ -159,7 +169,9 @@
 </nav>
 
 <script>
-  const DATA_URL = 'https://raw.githubusercontent.com/ilanmichalby/shabbat-yerucham/main/docs/shabbat-times.json';
+  // Served from the same origin so the service worker can cache it and the
+  // times still render offline.
+  const DATA_URL = 'shabbat-times.json';
 
   function fmtDate(iso) {
     const [y, m, d] = iso.slice(0, 10).split('-');
@@ -232,5 +244,7 @@
 
   load();
 </script>
+<script src="form-config.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
