@@ -99,7 +99,7 @@
     card.style.position = 'relative';
 
     var icon = document.createElement('img');
-    icon.src = 'icons/icon-192.png';
+    icon.src = 'icons/icon-192.v2.png';
     icon.alt = '';
     card.appendChild(icon);
 
