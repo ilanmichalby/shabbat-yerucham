@@ -1,5 +1,5 @@
 /* Service worker for "מתי שבת בירוחם" */
-const VERSION = 'v10';
+const VERSION = 'v11';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = `data-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
