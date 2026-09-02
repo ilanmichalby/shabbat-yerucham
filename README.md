@@ -14,6 +14,7 @@
 | `docs/manifest.webmanifest` | שם, אייקונים, צבעים ומסך פתיחה |
 | `docs/sw.js` | Service worker — קאשינג של הדפים, הגופנים וקובץ הזמנים |
 | `docs/app.js` | רישום ה-SW, פופאפ ההתקנה וטופס ההרשמה לבודקים |
+| `docs/analytics.js` | Google Analytics 4 במצב מדידה ללא עוגיות |
 | `docs/form-config.js` | כתובת טופס ההרשמה — הקובץ היחיד שצריך לערוך |
 | `docs/icons/` | אייקונים 192/512, maskable ו-apple-touch |
 

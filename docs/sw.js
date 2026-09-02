@@ -1,5 +1,5 @@
 /* Service worker for "מתי שבת בירוחם" */
-const VERSION = 'v12';
+const VERSION = 'v13';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = `data-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
@@ -14,6 +14,7 @@ const SHELL = [
   './privacy.html',
   './terms.html',
   './app.js',
+  './analytics.js',
   './form-config.js',
   './manifest.webmanifest',
   './icons/icon-192.v2.png',
