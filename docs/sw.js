@@ -1,5 +1,5 @@
 /* Service worker for "מתי שבת בירוחם" */
-const VERSION = 'v7';
+const VERSION = 'v8';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = `data-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
@@ -19,8 +19,6 @@ const SHELL = [
   './icons/icon-512.v2.png',
   './icons/maskable-512.v2.png',
   './icons/apple-touch-icon.v2.png',
-  './icons/sunset.gif',
-  './icons/sunset-still.png',
   './icons/og-image.png',
 ];
 
