@@ -162,6 +162,10 @@
 <circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/>
 <path d="M12 1.8v2.4M12 19.8v2.4M22.2 12h-2.4M4.2 12H1.8M19.21 4.79l-1.7 1.7M6.49 17.51l-1.7 1.7M19.21 19.21l-1.7-1.7M6.49 6.49l-1.7-1.7"/>
 </symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3.1"/>
+<path d="M19.4 14.6a1.5 1.5 0 0 0 .3 1.65l.06.06a1.8 1.8 0 1 1-2.55 2.55l-.06-.06a1.5 1.5 0 0 0-1.65-.3 1.5 1.5 0 0 0-.9 1.37V20a1.8 1.8 0 1 1-3.6 0v-.09a1.5 1.5 0 0 0-.98-1.37 1.5 1.5 0 0 0-1.65.3l-.06.06a1.8 1.8 0 1 1-2.55-2.55l.06-.06a1.5 1.5 0 0 0 .3-1.65 1.5 1.5 0 0 0-1.37-.9H4a1.8 1.8 0 1 1 0-3.6h.09a1.5 1.5 0 0 0 1.37-.98 1.5 1.5 0 0 0-.3-1.65l-.06-.06a1.8 1.8 0 1 1 2.55-2.55l.06.06a1.5 1.5 0 0 0 1.65.3H9.4a1.5 1.5 0 0 0 .9-1.37V4a1.8 1.8 0 1 1 3.6 0v.09a1.5 1.5 0 0 0 .9 1.37 1.5 1.5 0 0 0 1.65-.3l.06-.06a1.8 1.8 0 1 1 2.55 2.55l-.06.06a1.5 1.5 0 0 0-.3 1.65v.01a1.5 1.5 0 0 0 1.37.9H20a1.8 1.8 0 1 1 0 3.6h-.09a1.5 1.5 0 0 0-1.37.9z"/>
+</symbol>
 <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor">
 <path d="M12 2.6l2.88 5.84 6.44.94-4.66 4.54 1.1 6.42L12 17.31l-5.76 3.03 1.1-6.42L2.68 9.38l6.44-.94z"/>
 </symbol>
@@ -170,6 +174,9 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 h-16">
 <div class="flex flex-row-reverse justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-[600px] mx-auto h-full">
 <div class="font-headline-md text-headline-md font-bold text-primary">שבת בירוחם</div>
+<button id="settings-open" type="button" aria-label="הגדרות תצוגה" class="md:order-first text-on-surface-variant hover:text-primary-fixed-dim transition-colors p-2 -m-2">
+<svg class="w-6 h-6" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gear"/></svg>
+</button>
 <nav class="hidden md:flex flex-row-reverse gap-gutter items-center">
 <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 transition-colors" href="index.html">בית</a>
 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="times.html">זמנים</a>
@@ -185,31 +192,8 @@
                 <span id="hero-sub">טוען...</span>
             </div>
 </section>
-<!-- Main Time Cards -->
-<section class="grid grid-cols-1 md:grid-cols-2 gap-stack-md mb-stack-lg">
-<!-- Card 1: Candle Lighting -->
-<div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center glow-gold">
-<div class="mb-2 text-primary-fixed-dim">
-<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg>
-</div>
-<h2 class="font-label-md text-label-md text-on-surface-variant mb-4">כניסת שבת — הדלקת נרות</h2>
-<div id="time-candle" class="font-display-time text-display-time text-primary-container">--:--</div>
-<div class="mt-3 pt-3 border-t border-outline-variant/30 w-full font-label-sm text-label-sm text-on-surface-variant">
-                שקיעה <span id="time-sunset" class="text-primary-fixed-dim font-medium">--:--</span>
-            </div>
-</div>
-<!-- Card 2: Havdalah -->
-<div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-<div class="mb-2 text-on-surface-variant">
-<svg class="w-8 h-8 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>
-</div>
-<h2 class="font-label-md text-label-md text-on-surface-variant mb-4">צאת השבת</h2>
-<div id="time-havdalah" class="font-display-time text-display-time text-primary-container">--:--</div>
-<div class="mt-3 pt-3 border-t border-outline-variant/30 w-full font-label-sm text-label-sm text-on-surface-variant">
-                רבנו תם <span id="time-rt" class="text-primary-fixed-dim font-medium">--:--</span>
-            </div>
-</div>
-</section>
+<!-- Main Time Cards — rendered from the user's display preferences -->
+<section id="time-cards" class="grid grid-cols-1 md:grid-cols-2 gap-stack-md mb-stack-lg"></section>
 <!-- Desert Atmosphere Image -->
 <section class="mb-stack-lg rounded-2xl overflow-hidden relative h-48 group">
 <img alt="נוף מדברי בשעת דמדומים" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic low-angle shot of the Negev desert horizon in Yerucham during the blue hour twilight. The sky is a deep velvety indigo transitioning into a soft golden glow at the base. Silhouetted desert dunes and sparse vegetation are visible under a sprinkle of early evening stars, creating a serene, reverent, and spiritual atmosphere consistent with a peaceful Shabbat evening." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD4TM7vsCFY4L_rzGi_zM9SWmqc0oZus4qSWwWDNwdHOuhU1jYC1QbFHAtIVXvv6RK2KL1TlUjLPZoRcdpt3xbcXPJ8dNQe4lc-w8Yb-0wKy0ZEAoD2IXM1g3yRbBIoZ2ojkMo8mxx2kft_nenJADmjpiJuywEfZYPFrZmfe0F46LP0zA7MYL0HLGf11AKOyHF0YbbR4WLwZ-wY9nJkkrHncI8qwRFvxKAS3Tk-1Hy_Y41gWIMlaI-M86-PVsMLA09kIxbzmM4Ras"/>
@@ -280,6 +264,147 @@
             return `${d}/${m}/${y}`;
         }
 
+        // -------------------------------------------------------------------
+        // Display preferences: which times appear, and which one is the big
+        // card. Stored per-browser; the defaults match the original layout.
+        // -------------------------------------------------------------------
+        const TIME_ORDER = ['candleLighting', 'sunset', 'havdalah', 'rabbeinuTam'];
+        const TIME_LABELS = {
+            candleLighting: 'כניסת שבת — הדלקת נרות',
+            sunset: 'שקיעה',
+            havdalah: 'צאת השבת',
+            rabbeinuTam: 'צאת שבת (רבנו תם)',
+        };
+        const SHORT_LABELS = {
+            candleLighting: 'הדלקת נרות',
+            sunset: 'שקיעה',
+            havdalah: 'צאת השבת',
+            rabbeinuTam: 'רבנו תם',
+        };
+        const TIME_ICONS = {
+            candleLighting: '#i-sun',
+            sunset: '#i-sun',
+            havdalah: '#i-star',
+            rabbeinuTam: '#i-star',
+        };
+        const DISPLAY_KEY = 'sy:display-prefs-v1';
+        const DEFAULT_DISPLAY = {
+            visible: { candleLighting: true, sunset: true, havdalah: true, rabbeinuTam: true },
+            primary: 'candleLighting',
+        };
+
+        let currentShabbat = null;
+        let display = loadDisplay();
+
+        // localStorage throws in some privacy modes; never let that break the page.
+        function loadDisplay() {
+            try {
+                const raw = localStorage.getItem(DISPLAY_KEY);
+                if (!raw) return structuredClone(DEFAULT_DISPLAY);
+                const parsed = JSON.parse(raw);
+                return {
+                    primary: TIME_ORDER.includes(parsed.primary) ? parsed.primary : DEFAULT_DISPLAY.primary,
+                    visible: { ...DEFAULT_DISPLAY.visible, ...(parsed.visible ?? {}) },
+                };
+            } catch (e) {
+                return structuredClone(DEFAULT_DISPLAY);
+            }
+        }
+
+        function saveDisplay() {
+            try { localStorage.setItem(DISPLAY_KEY, JSON.stringify(display)); } catch (e) {}
+        }
+
+        // The primary time is always shown, so the page can never end up empty.
+        function shownTimes() {
+            return TIME_ORDER.filter(k => display.visible[k] || k === display.primary);
+        }
+
+        function renderCards() {
+            const host = document.getElementById('time-cards');
+            if (!host || !currentShabbat) return;
+            host.innerHTML = shownTimes().map(key => {
+                const primary = key === display.primary;
+                const value = currentShabbat[key] ?? '--:--';
+                return `
+                  <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center ${primary ? 'glow-gold md:col-span-2' : ''}">
+                    <div class="mb-2 ${primary ? 'text-primary-fixed-dim' : 'text-on-surface-variant'}">
+                      <svg class="${primary ? 'w-8 h-8' : 'w-6 h-6'} shrink-0" viewBox="0 0 24 24" aria-hidden="true"><use href="${TIME_ICONS[key]}"/></svg>
+                    </div>
+                    <h2 class="font-label-md text-label-md text-on-surface-variant mb-4">${TIME_LABELS[key]}</h2>
+                    <div class="font-display-time ${primary ? 'text-display-time' : 'text-headline-lg'} text-primary-container">${value}</div>
+                  </div>`;
+            }).join('');
+            attachCardHover();
+        }
+
+        // ---- Settings sheet -------------------------------------------------
+        function renderSettings() {
+            const primaryHost = document.getElementById('settings-primary');
+            primaryHost.innerHTML = TIME_ORDER.map(key => {
+                const active = display.primary === key;
+                return `<button type="button" data-primary="${key}" aria-pressed="${active}"
+                  class="font-label-md text-label-md rounded-full px-4 py-2 border transition-colors ${
+                    active
+                      ? 'bg-primary text-surface border-primary font-bold'
+                      : 'border-outline-variant/50 text-on-surface-variant hover:text-primary-fixed-dim'
+                  }">${SHORT_LABELS[key]}</button>`;
+            }).join('');
+
+            const visibleHost = document.getElementById('settings-visible');
+            visibleHost.innerHTML = TIME_ORDER.map(key => {
+                const locked = display.primary === key;
+                const on = display.visible[key] || locked;
+                return `<label class="flex flex-row-reverse items-center justify-between gap-4 py-3 ${locked ? 'opacity-50' : ''}">
+                  <span class="font-body-md text-body-md text-parchment">${SHORT_LABELS[key]}</span>
+                  <input type="checkbox" data-visible="${key}" ${on ? 'checked' : ''} ${locked ? 'disabled' : ''}
+                    class="w-5 h-5 rounded border-outline-variant/60 bg-transparent text-primary focus:ring-primary">
+                </label>`;
+            }).join('');
+        }
+
+        function openSettings() {
+            renderSettings();
+            const b = document.getElementById('settings-backdrop');
+            b.classList.remove('hidden');
+            b.classList.add('flex');
+        }
+
+        function closeSettings() {
+            const b = document.getElementById('settings-backdrop');
+            b.classList.add('hidden');
+            b.classList.remove('flex');
+        }
+
+        document.getElementById('settings-open').addEventListener('click', openSettings);
+        document.getElementById('settings-close').addEventListener('click', closeSettings);
+        document.getElementById('settings-backdrop').addEventListener('click', (e) => {
+            if (e.target.id === 'settings-backdrop') closeSettings();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSettings();
+        });
+
+        document.getElementById('settings-primary').addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-primary]');
+            if (!btn) return;
+            const key = btn.dataset.primary;
+            // Making a time primary also makes sure it is visible.
+            display = { primary: key, visible: { ...display.visible, [key]: true } };
+            saveDisplay();
+            renderSettings();
+            renderCards();
+        });
+
+        document.getElementById('settings-visible').addEventListener('change', (e) => {
+            const box = e.target.closest('[data-visible]');
+            if (!box) return;
+            display.visible[box.dataset.visible] = box.checked;
+            saveDisplay();
+            renderSettings();
+            renderCards();
+        });
+
         async function loadData() {
             try {
                 const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
@@ -294,12 +419,9 @@
                 // Update hero subtitle
                 document.getElementById('hero-sub').textContent = `${current.parsha} · ${formatDateFull(current.dateISO)}`;
 
-                // Update main cards
-                document.getElementById('time-candle').textContent = current.candleLighting;
-                document.getElementById('time-havdalah').textContent = current.havdalah;
-                // Secondary times: the luach does not always carry them.
-                document.getElementById('time-sunset').textContent = current.sunset ?? '--:--';
-                document.getElementById('time-rt').textContent = current.rabbeinuTam ?? '--:--';
+                // The cards are rendered from the user's display preferences.
+                currentShabbat = current;
+                renderCards();
 
                 // Update upcoming table
                 const tbody = document.getElementById('upcoming-tbody');
@@ -317,16 +439,20 @@
 
         loadData();
 
-        // Micro-interaction for the cards
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-4px)';
-                card.style.transition = 'transform 0.3s ease-out';
+        // Micro-interaction for the cards. Time cards are re-rendered whenever
+        // the display preferences change, so this runs again after each render.
+        function attachCardHover() {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-4px)';
+                    card.style.transition = 'transform 0.3s ease-out';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
+        }
+        attachCardHover();
 
         // Add subtle animation classes
         const style = document.createElement('style');
@@ -340,6 +466,20 @@
         `;
         document.head.appendChild(style);
     </script>
+<!-- Display settings sheet -->
+<div id="settings-backdrop" class="fixed inset-0 z-[130] bg-black/60 backdrop-blur-sm hidden items-end md:items-center justify-center p-0 md:p-4">
+<div role="dialog" aria-modal="true" aria-labelledby="settings-title" class="w-full max-w-[560px] bg-surface-container-low border border-outline-variant/40 rounded-t-2xl md:rounded-2xl p-6 max-h-[85vh] overflow-y-auto">
+<div class="flex flex-row-reverse items-center justify-between mb-4">
+<h2 id="settings-title" class="font-headline-md text-headline-md text-primary">הגדרות תצוגה</h2>
+<button id="settings-close" type="button" aria-label="סגור" class="text-on-surface-variant hover:text-primary-fixed-dim text-xl leading-none p-2 -m-2">✕</button>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant text-right mb-3">הזמן המרכזי</p>
+<div id="settings-primary" class="flex flex-row-reverse flex-wrap gap-2 mb-6"></div>
+<p class="font-label-md text-label-md text-on-surface-variant text-right mb-3">אילו זמנים להציג</p>
+<div id="settings-visible" class="flex flex-col gap-1"></div>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 text-right mt-6 leading-relaxed">ההעדפות נשמרות בדפדפן הזה בלבד.</p>
+</div>
+</div>
 <script src="form-config.js" defer></script>
 <script src="app.js" defer></script>
 </body></html>
