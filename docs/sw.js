@@ -1,5 +1,5 @@
 /* Service worker for "מתי שבת בירוחם" */
-const VERSION = 'v8';
+const VERSION = 'v9';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = `data-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
@@ -10,6 +10,7 @@ const SHELL = [
   './',
   './index.html',
   './times.html',
+  './about.html',
   './privacy.html',
   './terms.html',
   './app.js',
@@ -20,6 +21,7 @@ const SHELL = [
   './icons/maskable-512.v2.png',
   './icons/apple-touch-icon.v2.png',
   './icons/og-image.png',
+  './icons/sunset.gif',
 ];
 
 const DATA_PATH = 'shabbat-times.json';

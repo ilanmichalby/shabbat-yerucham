@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest"/>
+<meta name="theme-color" content="#0a112c"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="שבת בירוחם"/>
+<link rel="icon" href="icons/icon-192.v2.png" sizes="192x192" type="image/png"/>
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.v2.png"/>
+<!-- תצוגה מקדימה ברשתות חברתיות (Open Graph / Twitter) -->
+<meta name="description" content="על האפליקציה מתי שבת בירוחם — מקור הזמנים, התקנה, וצור קשר."/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="מתי שבת בירוחם"/>
+<meta property="og:locale" content="he_IL"/>
+<meta property="og:title" content="אודות — שבת בירוחם"/>
+<meta property="og:description" content="על האפליקציה מתי שבת בירוחם — מקור הזמנים, התקנה, וצור קשר."/>
+<meta property="og:url" content="https://ilanmichalby.github.io/shabbat-yerucham/about.html"/>
+<meta property="og:image" content="https://ilanmichalby.github.io/shabbat-yerucham/icons/og-image.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="השמש שוקעת מאחורי פסל הזהות של ירוחם, ומתחתיה הכיתוב מתי שבת בירוחם"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="אודות — שבת בירוחם"/>
+<meta name="twitter:description" content="על האפליקציה מתי שבת בירוחם — מקור הזמנים, התקנה, וצור קשר."/>
+<meta name="twitter:image" content="https://ilanmichalby.github.io/shabbat-yerucham/icons/og-image.png"/>
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>אודות — שבת בירוחם</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "outline-variant": "#4f4537",
+          "primary-fixed": "#ffdea9",
+          "primary-container": "#e8b65a",
+          "surface-container-highest": "#2d3350",
+          "on-primary-container": "#664700",
+          "secondary": "#ddc48d",
+          "surface-variant": "#2d3350",
+          "surface-container-high": "#222844",
+          "secondary-fixed-dim": "#ddc48d",
+          "surface": "#0a112c",
+          "on-background": "#dde1ff",
+          "secondary-container": "#564519",
+          "on-primary": "#422d00",
+          "primary-fixed-dim": "#f1be62",
+          "surface-tint": "#f1be62",
+          "surface-container-lowest": "#050c27",
+          "on-secondary": "#3d2e05",
+          "on-surface-variant": "#d3c5b2",
+          "inverse-surface": "#dde1ff",
+          "on-surface": "#dde1ff",
+          "outline": "#9b8f7e",
+          "surface-container-low": "#131a35",
+          "inverse-on-surface": "#282f4b",
+          "surface-container": "#171e39",
+          "surface-bright": "#313854",
+          "surface-dim": "#0a112c",
+          "background": "#0a112c",
+          "primary": "#ffd388"
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"
+        },
+        fontFamily: {
+          "display-time": ["Rubik", "Heebo"],
+          "label-sm": ["Rubik", "Heebo"],
+          "label-md": ["Rubik", "Heebo"],
+          "body-lg": ["Rubik", "Heebo"],
+          "body-md": ["Rubik", "Heebo"],
+          "headline-md": ["Rubik", "Heebo"],
+          "headline-lg": ["Rubik", "Heebo"],
+          "headline-lg-mobile": ["Rubik", "Heebo"]
+        },
+        fontSize: {
+          "display-time": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+          "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+          "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+          "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+          "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Heebo', 'Rubik', sans-serif; background-color: #0a112c; }
+  .glass-card { background: rgba(27,35,71,0.8); backdrop-filter: blur(8px); border: 1px solid rgba(44,53,102,0.5); }
+  .text-parchment { color: #f5f1e6; }
+  .row-current { background: rgba(232,182,90,0.08); border-right: 3px solid #e8b65a; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 h-16">
+  <div class="flex flex-row-reverse justify-between items-center px-5 md:px-8 w-full max-w-[600px] mx-auto h-full">
+    <div class="font-headline-md text-headline-md font-bold text-primary">שבת בירוחם</div>
+    <nav class="hidden md:flex flex-row-reverse gap-4 items-center">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="index.html">בית</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="times.html">זמנים</a>
+      <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1" href="about.html">אודות</a>
+    </nav>
+    <button class="p-2 text-primary">
+      <span class="material-symbols-outlined">settings</span>
+    </button>
+  </div>
+</header>
+
+
+<main class="flex-grow pt-24 pb-10 w-full max-w-[600px] mx-auto px-5 md:px-8">
+
+  <!-- Page title -->
+  <section class="text-center mb-8">
+    <!-- The app icon, animated from day to night -->
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="icons/icon-512.v2.png"/>
+      <img src="icons/sunset.gif" width="256" height="256" decoding="async"
+           alt="השמש שוקעת מאחורי פסל הזהות של ירוחם"
+           class="mx-auto mb-6 w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-lg shadow-black/30"/>
+    </picture>
+    <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">אודות</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant opacity-80">מתי שבת בירוחם</p>
+  </section>
+
+  <div class="flex flex-col gap-4">
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">מה זה</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed">
+        זמני כניסת ויציאת שבת בירוחם, במסך אחד ובלי חיפושים. האפליקציה מציגה את
+        זמני השבת הקרובה ואת השבתות שאחריה: הדלקת נרות, שקיעה, צאת השבת וזמן
+        רבנו תם.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6" id="how">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">כיצד מחושב?</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed mb-3">
+        הזמנים אינם מחושבים כאן. הם מועתקים כלשונם מתוך
+        <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a>
+        בעריכת הרב אודי רט, שנערך עבור ירוחם. האפליקציה היא דרך נוחה להציג את
+        אותו לוח, ולא מקור עצמאי.
+      </p>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        מכאן נובע גם שהזמנים מיועדים לירוחם בלבד. ביישוב אחר, אפילו סמוך, הם
+        יהיו שונים — ואין להסתמך עליהם שם.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">התקנה</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed mb-3">
+        אפשר להוסיף את האתר למסך הבית ולהשתמש בו כאפליקציה, גם בלי חיבור
+        לאינטרנט: באנדרואיד יוצג כפתור התקנה, ובאייפון דרך תפריט השיתוף
+        ← "הוספה למסך הבית".
+      </p>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed">
+        אפליקציית אנדרואיד נמצאת בשלב בדיקות סגור.
+        <a href="#" data-sy-tester class="text-primary hover:underline">אפשר להירשם כבודק/ת</a>
+        ולקבל אליה גישה.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">האייקון</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed">
+        פסל הזהות של ירוחם, והשמש ששוקעת מאחוריו.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">הבהרה</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed mb-4">
+        למרות שהזמנים נלקחים מהלוח ונבדקים, ייתכנו טעויות. בכל שאלה הלכתית או
+        במקרה של ספק — יש להכריע לפי הלוח המודפס ולפי רב הקהילה.
+      </p>
+      <div class="flex gap-4">
+        <a href="terms.html" class="font-label-md text-label-md text-primary hover:underline">תנאי שימוש</a>
+        <a href="privacy.html" class="font-label-md text-label-md text-primary hover:underline">מדיניות פרטיות</a>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 mt-8">
+  <div class="flex flex-col items-center gap-4 py-8 w-full max-w-[600px] mx-auto text-center px-5">
+    <div class="font-headline-md text-headline-md text-primary mb-2">שבת בירוחם</div>
+    <p class="font-label-sm text-label-sm text-on-surface-variant max-w-[80%]">הזמנים מיועדים לירוחם בלבד.</p>
+    <p class="font-label-sm text-label-sm text-on-surface-variant">על פי <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a> בעריכת הרב אודי רט</p>
+    <div class="flex gap-4">
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="terms.html">תנאי שימוש</a>
+      <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="privacy.html">פרטיות</a>
+      <a class="font-label-sm text-label-sm text-primary hover:underline transition-colors" href="#" data-sy-tester>הירשמו כבודקים לאנדרואיד</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile bottom nav -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
+  <a href="index.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm">בית</span>
+  </a>
+  <a href="times.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">schedule</span>
+    <span class="text-[10px] font-label-sm">זמנים</span>
+  </a>
+  <a href="about.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">info</span>
+    <span class="text-[10px] font-label-sm">אודות</span>
+  </a>
+</nav>
+
+<!-- Mobile bottom nav -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
+  <a href="index.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm">בית</span>
+  </a>
+  <a href="times.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">schedule</span>
+    <span class="text-[10px] font-label-sm">זמנים</span>
+  </a>
+  <a href="about.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">info</span>
+    <span class="text-[10px] font-label-sm">אודות</span>
+  </a>
+</nav>
+
+
+<script src="form-config.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
