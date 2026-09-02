@@ -5,13 +5,15 @@
   // ---------------------------------------------------------------------------
   // Configuration
   //
-  // TESTER_FORM_URL — the embeddable form that collects tester Gmail addresses.
+  // The embeddable form that collects tester Gmail addresses lives in
+  // form-config.js, so the URL can be swapped without touching this file.
   // Works with any form that allows embedding, e.g.
-  //   Fillout:  https://forms.fillout.com/t/<formId>
-  //   Airtable: https://airtable.com/embed/<formId>
+  //   Google Forms: https://docs.google.com/forms/d/e/<id>/viewform?embedded=true
+  //   Fillout:      https://forms.fillout.com/t/<formId>
+  //   Airtable:     https://airtable.com/embed/<formId>
   // Leave it empty and the button falls back to a pre-filled email instead.
   // ---------------------------------------------------------------------------
-  var TESTER_FORM_URL = '';
+  var TESTER_FORM_URL = window.SY_TESTER_FORM_URL || '';
   var FALLBACK_EMAIL = 'mindcetdev@gmail.com';
 
   var STORE = {

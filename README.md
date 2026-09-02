@@ -14,6 +14,7 @@
 | `docs/manifest.webmanifest` | שם, אייקונים, צבעים ומסך פתיחה |
 | `docs/sw.js` | Service worker — קאשינג של הדפים, הגופנים וקובץ הזמנים |
 | `docs/app.js` | רישום ה-SW, פופאפ ההתקנה וטופס ההרשמה לבודקים |
+| `docs/form-config.js` | כתובת טופס ההרשמה — הקובץ היחיד שצריך לערוך |
 | `docs/icons/` | אייקונים 192/512, maskable ו-apple-touch |
 
 ### פופאפ ההתקנה
@@ -30,13 +31,16 @@
 4 שניות הזמנה להירשם כבודק/ת לאפליקציית האנדרואיד. בנוסף יש קישור קבוע
 בפוטר של כל דף — כל אלמנט עם התכונה `data-sy-tester` פותח את אותו טופס.
 
-**כדי לחבר את הטופס**, ערכו את `TESTER_FORM_URL` בראש `docs/app.js`:
+**כדי לחבר את הטופס**, ערכו שורה אחת ב-`docs/form-config.js`:
 
 ```js
-var TESTER_FORM_URL = 'https://forms.fillout.com/t/<formId>';   // Fillout
-// או
-var TESTER_FORM_URL = 'https://airtable.com/embed/<formId>';    // Airtable
+window.SY_TESTER_FORM_URL = 'https://docs.google.com/forms/d/e/<id>/viewform?embedded=true';
 ```
+
+ב-Google Forms מעתיקים את הכתובת מתוך "שליחה" (Send) ← לשונית `<>` — זו
+הכתובת עם ה-`/d/e/`, ולא זו שמופיעה בשורת הכתובת בזמן העריכה. עובד באותה
+מידה עם Fillout (`https://forms.fillout.com/t/<formId>`) או Airtable
+(`https://airtable.com/embed/<formId>`).
 
 הטופס נפתח ב-iframe בתוך מודאל מעוצב, כך שאין צורך במפתחות API בקוד הציבורי.
 כל עוד המשתנה ריק, הכפתור נופל בחזרה למייל מוכן מראש (`FALLBACK_EMAIL`).
