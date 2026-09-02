@@ -12,25 +12,25 @@
 <link rel="icon" href="icons/icon-192.v2.png" sizes="192x192" type="image/png"/>
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.v2.png"/>
 <!-- תצוגה מקדימה ברשתות חברתיות (Open Graph / Twitter) -->
-<meta name="description" content="טבלת זמני כניסת ויציאת שבת בירוחם לשבתות הקרובות."/>
+<meta name="description" content="על האפליקציה מתי שבת בירוחם — מקור הזמנים, התקנה, וצור קשר."/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="מתי שבת בירוחם"/>
 <meta property="og:locale" content="he_IL"/>
-<meta property="og:title" content="זמנים — שבת בירוחם"/>
-<meta property="og:description" content="טבלת זמני כניסת ויציאת שבת בירוחם לשבתות הקרובות."/>
-<meta property="og:url" content="https://ilanmichalby.github.io/shabbat-yerucham/times.html"/>
+<meta property="og:title" content="אודות — שבת בירוחם"/>
+<meta property="og:description" content="על האפליקציה מתי שבת בירוחם — מקור הזמנים, התקנה, וצור קשר."/>
+<meta property="og:url" content="https://ilanmichalby.github.io/shabbat-yerucham/about.html"/>
 <meta property="og:image" content="https://ilanmichalby.github.io/shabbat-yerucham/icons/og-image.png"/>
 <meta property="og:image:type" content="image/png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="השמש שוקעת מאחורי פסל הזהות של ירוחם, ומתחתיה הכיתוב מתי שבת בירוחם"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="זמנים — שבת בירוחם"/>
-<meta name="twitter:description" content="טבלת זמני כניסת ויציאת שבת בירוחם לשבתות הקרובות."/>
+<meta name="twitter:title" content="אודות — שבת בירוחם"/>
+<meta name="twitter:description" content="על האפליקציה מתי שבת בירוחם — מקור הזמנים, התקנה, וצור קשר."/>
 <meta name="twitter:image" content="https://ilanmichalby.github.io/shabbat-yerucham/icons/og-image.png"/>
 
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>זמנים — שבת בירוחם</title>
+<title>אודות — שבת בירוחם</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -111,8 +111,8 @@
     <div class="font-headline-md text-headline-md font-bold text-primary">שבת בירוחם</div>
     <nav class="hidden md:flex flex-row-reverse gap-4 items-center">
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="index.html">בית</a>
-      <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1" href="times.html">זמנים</a>
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="about.html">אודות</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="times.html">זמנים</a>
+      <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1" href="about.html">אודות</a>
     </nav>
     <button class="p-2 text-primary">
       <span class="material-symbols-outlined">settings</span>
@@ -120,38 +120,81 @@
   </div>
 </header>
 
+
 <main class="flex-grow pt-24 pb-10 w-full max-w-[600px] mx-auto px-5 md:px-8">
 
   <!-- Page title -->
   <section class="text-center mb-8">
-    <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">זמני שבת בירוחם</h1>
-    <p class="font-body-md text-body-md text-on-surface-variant opacity-80">כניסת ויציאת שבת לשבועות הקרובים</p>
+    <!-- The app icon, animated from day to night -->
+    <picture>
+      <source media="(prefers-reduced-motion: reduce)" srcset="icons/icon-512.v2.png"/>
+      <img src="icons/sunset.gif" width="256" height="256" decoding="async"
+           alt="השמש שוקעת מאחורי פסל הזהות של ירוחם"
+           class="mx-auto mb-6 w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-lg shadow-black/30"/>
+    </picture>
+    <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">אודות</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant opacity-80">מתי שבת בירוחם</p>
   </section>
 
-  <!-- Desktop table -->
-  <div class="glass-card rounded-2xl overflow-x-auto hidden md:block mb-6">
-    <table class="w-full text-right">
-      <thead>
-        <tr class="bg-surface-container-high/50 border-b border-outline-variant/30">
-          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">תאריך</th>
-          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">פרשה</th>
-          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">הדלקת נרות</th>
-          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">שקיעה</th>
-          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">צאת השבת</th>
-          <th class="px-3 py-4 font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">רבנו תם</th>
-        </tr>
-      </thead>
-      <tbody id="times-tbody-desktop" class="divide-y divide-outline-variant/20"></tbody>
-    </table>
+  <div class="flex flex-col gap-4">
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">מה זה</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed">
+        זמני כניסת ויציאת שבת בירוחם, במסך אחד ובלי חיפושים. האפליקציה מציגה את
+        זמני השבת הקרובה ואת השבתות שאחריה: הדלקת נרות, שקיעה, צאת השבת וזמן
+        רבנו תם.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6" id="how">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">כיצד מחושב?</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed mb-3">
+        הזמנים אינם מחושבים כאן. הם מועתקים כלשונם מתוך
+        <a href="luach.pdf" target="_blank" class="text-primary hover:underline">לוח הדלקת נרות שבת וחג</a>
+        בעריכת הרב אודי רט, שנערך עבור ירוחם. האפליקציה היא דרך נוחה להציג את
+        אותו לוח, ולא מקור עצמאי.
+      </p>
+      <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        מכאן נובע גם שהזמנים מיועדים לירוחם בלבד. ביישוב אחר, אפילו סמוך, הם
+        יהיו שונים — ואין להסתמך עליהם שם.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">התקנה</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed mb-3">
+        אפשר להוסיף את האתר למסך הבית ולהשתמש בו כאפליקציה, גם בלי חיבור
+        לאינטרנט: באנדרואיד יוצג כפתור התקנה, ובאייפון דרך תפריט השיתוף
+        ← "הוספה למסך הבית".
+      </p>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed">
+        אפליקציית אנדרואיד נמצאת בשלב בדיקות סגור.
+        <a href="#" data-sy-tester class="text-primary hover:underline">אפשר להירשם כבודק/ת</a>
+        ולקבל אליה גישה.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">האייקון</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed">
+        פסל הזהות של ירוחם, והשמש ששוקעת מאחוריו.
+      </p>
+    </section>
+
+    <section class="glass-card rounded-2xl p-6">
+      <h2 class="font-headline-md text-headline-md text-primary mb-3">הבהרה</h2>
+      <p class="font-body-md text-body-md text-parchment leading-relaxed mb-4">
+        למרות שהזמנים נלקחים מהלוח ונבדקים, ייתכנו טעויות. בכל שאלה הלכתית או
+        במקרה של ספק — יש להכריע לפי הלוח המודפס ולפי רב הקהילה.
+      </p>
+      <div class="flex gap-4">
+        <a href="terms.html" class="font-label-md text-label-md text-primary hover:underline">תנאי שימוש</a>
+        <a href="privacy.html" class="font-label-md text-label-md text-primary hover:underline">מדיניות פרטיות</a>
+      </div>
+    </section>
+
   </div>
-
-  <!-- Mobile cards -->
-  <div id="times-cards-mobile" class="md:hidden flex flex-col gap-3 mb-6"></div>
-
-  <p class="font-label-sm text-label-sm text-on-surface-variant text-center">
-    הזמנים מיועדים לירוחם בלבד ·
-    <a href="about.html" class="text-primary hover:underline">כיצד מחושב?</a>
-  </p>
 
 </main>
 
@@ -185,82 +228,23 @@
   </a>
 </nav>
 
-<script>
-  // Served from the same origin so the service worker can cache it and the
-  // times still render offline.
-  const DATA_URL = 'shabbat-times.json';
+<!-- Mobile bottom nav -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/20 h-16 flex justify-around items-center px-4 z-50">
+  <a href="index.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-sm">בית</span>
+  </a>
+  <a href="times.html" class="flex flex-col items-center text-on-surface-variant">
+    <span class="material-symbols-outlined">schedule</span>
+    <span class="text-[10px] font-label-sm">זמנים</span>
+  </a>
+  <a href="about.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">info</span>
+    <span class="text-[10px] font-label-sm">אודות</span>
+  </a>
+</nav>
 
-  function fmtDate(iso) {
-    const [y, m, d] = iso.slice(0, 10).split('-');
-    return `${d}.${m}.${y.slice(2)}`;
-  }
 
-  async function load() {
-    try {
-      const res = await fetch(`${DATA_URL}?t=${Date.now()}`);
-      const json = await res.json();
-      const all = (json.shabbats ?? []).slice().sort((a, b) => a.dateISO.localeCompare(b.dateISO));
-      const today = new Date().toISOString().slice(0, 10);
-      // Show the upcoming Shabbat onwards; past dates are dropped.
-      const idx = all.findIndex(s => s.dateISO >= today);
-      const upcoming = idx === -1 ? all.slice(-1) : all.slice(idx);
-
-      // Desktop table
-      const tbody = document.getElementById('times-tbody-desktop');
-      tbody.innerHTML = upcoming.map((s, i) => {
-        const isCurrent = i === 0;
-        return `<tr class="${isCurrent ? 'row-current' : 'hover:bg-surface-container-low'} transition-colors">
-          <td class="px-3 py-4 font-body-md text-body-md text-parchment whitespace-nowrap">
-            ${fmtDate(s.dateISO)}
-            ${isCurrent ? '<div class="mt-1 inline-block text-[11px] bg-yellow-900/40 text-yellow-300 border border-yellow-700/40 rounded-full px-2 py-0.5">השבת הקרובה</div>' : ''}
-          </td>
-          <td class="px-3 py-4 font-body-md text-body-md text-parchment font-medium min-w-[110px]">${s.parsha}</td>
-          <td class="px-3 py-4 font-label-md text-primary-fixed-dim font-bold tabular-nums whitespace-nowrap">${s.candleLighting}</td>
-          <td class="px-3 py-4 font-label-md text-on-surface-variant tabular-nums whitespace-nowrap">${s.sunset}</td>
-          <td class="px-3 py-4 font-label-md text-primary-fixed-dim font-bold tabular-nums whitespace-nowrap">${s.havdalah}</td>
-          <td class="px-3 py-4 font-label-md text-on-surface-variant tabular-nums whitespace-nowrap">${s.rabbeinuTam}</td>
-        </tr>`;
-      }).join('');
-
-      // Mobile cards
-      const mobileContainer = document.getElementById('times-cards-mobile');
-      mobileContainer.innerHTML = upcoming.map((s, i) => {
-        const isCurrent = i === 0;
-        return `<div class="glass-card rounded-2xl p-4 ${isCurrent ? 'border-yellow-600/50' : ''}">
-          <div class="flex justify-between items-start mb-3">
-            <div>
-              <div class="font-body-md text-body-md text-parchment font-medium">${s.parsha}</div>
-              <div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">${fmtDate(s.dateISO)}</div>
-            </div>
-            ${isCurrent ? '<span class="text-[11px] bg-yellow-900/40 text-yellow-300 border border-yellow-700/40 rounded-full px-2 py-0.5">השבת הקרובה</span>' : ''}
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-surface-container rounded-xl p-3 text-center">
-              <div class="font-label-sm text-label-sm text-on-surface-variant mb-1">הדלקת נרות</div>
-              <div class="text-2xl font-bold text-primary-container tabular-nums">${s.candleLighting}</div>
-            </div>
-            <div class="bg-surface-container rounded-xl p-3 text-center">
-              <div class="font-label-sm text-label-sm text-on-surface-variant mb-1">צאת השבת</div>
-              <div class="text-2xl font-bold text-primary-container tabular-nums">${s.havdalah}</div>
-            </div>
-          </div>
-          <div class="flex justify-between mt-2 px-1">
-            <span class="font-label-sm text-label-sm text-on-surface-variant">שקיעה: <span class="text-parchment">${s.sunset}</span></span>
-            <span class="font-label-sm text-label-sm text-on-surface-variant">ר"ת: <span class="text-parchment">${s.rabbeinuTam}</span></span>
-          </div>
-        </div>`;
-      }).join('');
-
-    } catch(e) {
-      document.getElementById('times-tbody-desktop').innerHTML =
-        '<tr><td colspan="6" class="p-8 text-center text-on-surface-variant">לא ניתן לטעון נתונים — בדוק חיבור לאינטרנט</td></tr>';
-      document.getElementById('times-cards-mobile').innerHTML =
-        '<div class="glass-card rounded-2xl p-8 text-center text-on-surface-variant">לא ניתן לטעון נתונים</div>';
-    }
-  }
-
-  load();
-</script>
 <script src="form-config.js" defer></script>
 <script src="app.js" defer></script>
 </body>
