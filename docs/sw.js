@@ -1,5 +1,5 @@
 /* Service worker for "מתי שבת בירוחם" */
-const VERSION = 'v5';
+const VERSION = 'v6';
 const SHELL_CACHE = `shell-${VERSION}`;
 const DATA_CACHE = `data-${VERSION}`;
 const RUNTIME_CACHE = `runtime-${VERSION}`;
@@ -15,10 +15,10 @@ const SHELL = [
   './app.js',
   './form-config.js',
   './manifest.webmanifest',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/maskable-512.png',
-  './icons/apple-touch-icon.png',
+  './icons/icon-192.v2.png',
+  './icons/icon-512.v2.png',
+  './icons/maskable-512.v2.png',
+  './icons/apple-touch-icon.v2.png',
 ];
 
 const DATA_PATH = 'shabbat-times.json';
@@ -88,6 +88,24 @@ self.addEventListener('fetch', (event) => {
           (await cache.match('./index.html')) ||
           Response.error()
         );
+      }
+    })());
+    return;
+  }
+
+  // The manifest and the icons decide what an installed app looks like, and a
+  // cache-first copy of them survives long past a redeploy — the browser keeps
+  // showing a replaced icon. Go to the network first and fall back to the
+  // cache, so they still work offline without going stale.
+  if (sameOrigin && /manifest\.webmanifest$|\/icons\//.test(url.pathname)) {
+    event.respondWith((async () => {
+      const cache = await caches.open(SHELL_CACHE);
+      try {
+        const res = await fetch(request);
+        if (res && res.ok) cache.put(request, res.clone());
+        return res;
+      } catch {
+        return (await cache.match(request, { ignoreSearch: true })) || Response.error();
       }
     })());
     return;
