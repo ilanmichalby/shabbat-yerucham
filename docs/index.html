@@ -209,6 +209,9 @@
 </div>
 <h2 class="font-label-md text-label-md text-on-surface-variant mb-4">כניסת שבת — הדלקת נרות</h2>
 <div id="time-candle" class="font-display-time text-display-time text-primary-container">--:--</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 w-full font-label-sm text-label-sm text-on-surface-variant">
+                שקיעה <span id="time-sunset" class="text-primary-fixed-dim font-medium">--:--</span>
+            </div>
 </div>
 <!-- Card 2: Havdalah -->
 <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
@@ -217,6 +220,9 @@
 </div>
 <h2 class="font-label-md text-label-md text-on-surface-variant mb-4">צאת השבת</h2>
 <div id="time-havdalah" class="font-display-time text-display-time text-primary-container">--:--</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 w-full font-label-sm text-label-sm text-on-surface-variant">
+                רבנו תם <span id="time-rt" class="text-primary-fixed-dim font-medium">--:--</span>
+            </div>
 </div>
 </section>
 <!-- Desert Atmosphere Image -->
@@ -306,6 +312,9 @@
                 // Update main cards
                 document.getElementById('time-candle').textContent = current.candleLighting;
                 document.getElementById('time-havdalah').textContent = current.havdalah;
+                // Secondary times: the luach does not always carry them.
+                document.getElementById('time-sunset').textContent = current.sunset ?? '--:--';
+                document.getElementById('time-rt').textContent = current.rabbeinuTam ?? '--:--';
 
                 // Update upcoming table
                 const tbody = document.getElementById('upcoming-tbody');
