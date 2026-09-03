@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var MEASUREMENT_ID = 'G-T0VDNZYFQP';
+  var MEASUREMENT_ID = '15623674261';
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
