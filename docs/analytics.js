@@ -14,8 +14,22 @@
     'allow_ad_personalization_signals': false,
   });
 
+  // Send a page_view event
+  window.gtag('event', 'page_view', {
+    'page_path': window.location.pathname,
+    'page_title': document.title
+  });
+
   var script = document.createElement('script');
   script.async = true;
   script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(MEASUREMENT_ID);
+  script.onload = function() {
+    console.log('[GA4] Google Tag Manager script loaded successfully');
+  };
+  script.onerror = function() {
+    console.error('[GA4] Failed to load Google Tag Manager script');
+  };
   document.head.appendChild(script);
+
+  console.log('[GA4] Analytics initialized with Measurement ID:', MEASUREMENT_ID);
 })();
